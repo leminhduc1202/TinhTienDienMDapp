@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Tinh Tien Dien MDapp</string>
+    <string name="ngaybatdau">Nhập ngày bắt đầu</string>
+    <string name="ngayketthuc">Nhập ngày kết thúc</string>
+    <string name="tongsodiennang">Tổng số điện năng tiêu thụ (kWh)</string>
+    <string name="hotroCovid">Hỗ trợ COVID \n (mặc định 10%)</string>
+    <string name="tinhtoan">tính tiền điện</string>
+    <string name="sttbac">STT Bậc</string>
+    <string name="khoantieuthu">Khoản tiêu thụ</string>
+    <string name="dientieuthu">Điện tiêu thụ \n (kWh)</string>
+    <string name="dongia">Đơn giá\n (đồng)</string>
+    <string name="thanhtien">Thành tiền</string>
+    <string name="bac1">Bậc 1</string>
+    <string name="khoan1">Cho kWh từ 0 - 100</string>
+    <string name="bac2">Bậc 2</string>
+    <string name="khoan2">Cho kWh từ 101 - 200</string>
+    <string name="bac3">Bậc 3</string>
+    <string name="khoan3">Cho kWh từ 201 - 400</string>
+    <string name="bac4">Bậc 4</string>
+    <string name="khoan4">Cho kWh từ 401 - 600</string>
+    <string name="bac5">Bậc 5</string>
+    <string name="khoan5">Cho kWh từ 601 - 800</string>
+    <string name="bac6">Bậc 6</string>
+    <string name="khoan6">Cho kWh từ 801 trở lên</string>
+    <string name="ketquatieude">Kết quả tính toán</string>
+    <string name="tienDienChuaThue">Tiền điện chưa thuế:</string>
+    <string name="thueGTGT">Thuế GTGT (10%) tiền điện:</string>
+    <string name="tongCongthanhtoan">Tổng cộng tiền điện (đồng):</string>
+</resources>
