@@ -1,110 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:weightSum="5">
 
     <LinearLayout
         android:id="@+id/tabNhapThongTin"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="6dp">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="3">
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:weightSum="3">
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="@string/ngaybatdau"
-                android:gravity="center"
-                android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/ngayBatDau"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:inputType="date"
-                android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/ngayketthuc"
-                android:gravity="center"
-                android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/ngayKetThuc"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:inputType="date"
-                android:textAlignment="center"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/tongsodiennang"
-                android:gravity="center"
-                android:textStyle="bold"/>
-            <EditText
-                android:id="@+id/tongSoDienNang"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"/>
-        </LinearLayout>
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/ngaybatdau"
+                    android:textStyle="bold"
+                    android:gravity="fill_vertical"/>
+                <EditText
+                    android:id="@+id/ngayBatDau"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="date"
+                    android:textAlignment="center"/>
 
-        <Button
-            android:id="@+id/ketQuaTinhDien"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tinhtoan"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/ngayketthuc"
+                    android:textStyle="bold"
+                    android:gravity="fill_vertical"/>
+                <EditText
+                    android:id="@+id/ngayKetThuc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="date"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="2">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/tongsodiennang"
+                    android:textStyle="bold"
+                    android:gravity="fill_vertical"/>
+                <EditText
+                    android:id="@+id/tongSoDienNang"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:weightSum="3"
+            android:gravity="center">
+            <Button
+                android:id="@+id/tangSizeChu"
+                android:text="+"
+                android:textSize="30sp"
+                android:background="@drawable/button_press"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/ketQuaTinhDien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/tinhtoan"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_press" />
+            <Button
+                android:id="@+id/giamSizeChu"
+                android:text="-"
+                android:textSize="30sp"
+                android:background="@drawable/button_press"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/tabThongTinChiTiet"
         android:orientation="vertical"
         android:layout_below="@id/tabNhapThongTin"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:weightSum="7"
         android:layout_centerInParent="true">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/table_row">
             <TextView
                 android:text="@string/sttbac"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
             <TextView
                 android:text="@string/khoantieuthu"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
             <TextView
                 android:text="@string/dientieuthu"
                 android:gravity="center"
@@ -130,7 +181,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/table_row_detail">
             <TextView
                 android:text="@string/bac1"
                 android:gravity="center"
@@ -166,7 +219,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/table_row_detail">
             <TextView
                 android:text="@string/bac2"
                 android:gravity="center"
@@ -202,7 +257,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/table_row_detail">
             <TextView
                 android:text="@string/bac3"
                 android:gravity="center"
@@ -239,7 +296,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/table_row_detail">
             <TextView
                 android:text="@string/bac4"
                 android:gravity="center"
@@ -275,7 +334,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/table_row_detail">
             <TextView
                 android:text="@string/bac5"
                 android:gravity="center"
@@ -311,7 +372,9 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/table_row_detail">
             <TextView
                 android:text="@string/bac6"
                 android:gravity="center"
@@ -350,31 +413,36 @@
     <LinearLayout
         android:id="@+id/tabKetQuaTinhToan"
         android:orientation="vertical"
-        android:layout_margin="6dp"
         android:layout_below="@id/tabThongTinChiTiet"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="4">
         <TextView
             android:text="@string/ketquatieude"
             android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:textStyle="bold" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <TextView
                 android:text="@string/tienDienChuaThue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tongTienChuaThue"
                 android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
@@ -382,36 +450,38 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <TextView
                 android:text="@string/thueGTGT"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tienThue"
                 android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
         </LinearLayout><LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1">
             <TextView
                 android:text="@string/tongCongthanhtoan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tongTienThanhToan"
                 android:gravity="end"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="@color/red"
@@ -423,4 +493,4 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>

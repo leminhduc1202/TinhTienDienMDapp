@@ -1,6 +1,7 @@
 package mdideas.devapp.tinhtiendienmdapp
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import mdideas.devapp.tinhtiendienmdapp.databinding.ActivityMainBinding
@@ -10,6 +11,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     var binding: ActivityMainBinding? = null
+    private var ourFontSize = 14f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,5 +120,46 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Tổng tiền điện của bạn bao gồm thuế là: ${nf.format(tongTienChuaThue + tienThueGTGT)} VNĐ",Toast.LENGTH_LONG).show()
 
             }
+        //Tuy chinh Font chu
+
+        binding!!.tangSizeChu.setOnClickListener {
+            ourFontSize +=4f
+            binding!!.dienTieuThuBac01.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac01.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac02.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac02.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac03.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac03.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac04.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac04.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac05.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac05.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac06.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac06.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.tongTienChuaThue.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.tienThue.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.tongTienThanhToan.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+
         }
+        binding!!.giamSizeChu.setOnClickListener {
+            ourFontSize -=4f
+            binding!!.dienTieuThuBac01.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac01.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac02.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac02.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac03.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac03.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac04.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac04.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac05.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac05.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.dienTieuThuBac06.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.thanhTienBac06.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.tongTienChuaThue.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.tienThue.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+            binding!!.tongTienThanhToan.setTextSize(TypedValue.COMPLEX_UNIT_SP,ourFontSize)
+        }
+    }
 }
+
+
