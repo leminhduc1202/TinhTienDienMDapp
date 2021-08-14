@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textAlignment="center"/>
         </LinearLayout>
 
@@ -80,7 +81,7 @@
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/tabKetQua"
+        android:id="@+id/tabThongTinChiTiet"
         android:orientation="vertical"
         android:layout_below="@id/tabNhapThongTin"
         android:layout_width="match_parent"
@@ -150,7 +151,7 @@
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/donGiaBac01"
-                android:text="1.678"
+                android:text="1,678"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -186,7 +187,7 @@
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/donGiaBac02"
-                android:text="1.734"
+                android:text="1,734"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -223,7 +224,7 @@
                 android:gravity="center" />
             <TextView
                 android:id="@+id/donGiaBac03"
-                android:text="2.014"
+                android:text="2,014"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -259,7 +260,7 @@
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/donGiaBac04"
-                android:text="2.536"
+                android:text="2,536"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -295,7 +296,7 @@
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/donGiaBac05"
-                android:text="2.834"
+                android:text="2,834"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -333,7 +334,7 @@
 
             <TextView
                 android:id="@+id/donGiaBac06"
-                android:text="2.927"
+                android:text="2,927"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -347,9 +348,10 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/tabKetQuaTinhToan"
         android:orientation="vertical"
         android:layout_margin="6dp"
-        android:layout_below="@id/tabKetQua"
+        android:layout_below="@id/tabThongTinChiTiet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
