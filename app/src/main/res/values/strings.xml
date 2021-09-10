@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Tinh Tien Dien MDapp</string>
+    <string name="app_name">Tinh Tien Dien MDapp Ver2</string>
     <string name="ngaybatdau">Nhập ngày bắt đầu</string>
     <string name="ngayketthuc">Nhập ngày kết thúc</string>
     <string name="tongsodiennang">Tổng số điện năng tiêu thụ (kWh)</string>
     <string name="hotroCovid">Hỗ trợ COVID \n (mặc định 10%)</string>
     <string name="tinhtoan">tính tiền điện</string>
     <string name="sttbac">STT Bậc</string>
-    <string name="khoantieuthu">Khoản tiêu thụ</string>
-    <string name="dientieuthu">Điện tiêu thụ \n (kWh)</string>
+    <string name="khoantieuthu">Khoản \n tiêu thụ</string>
+    <string name="dientieuthu">Điện \n tiêu thụ (kWh)</string>
     <string name="dongia">Đơn giá\n (đồng)</string>
     <string name="thanhtien">Thành tiền</string>
     <string name="bac1">Bậc 1</string>

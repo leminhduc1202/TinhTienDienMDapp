@@ -1,281 +1,369 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="5">
+    tools:context=".ResultActivity"
+    android:background="@drawable/back_ground"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/tabThongTinChiTiet"
-        android:orientation="vertical"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
+        android:id="@+id/topHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInPut"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="Số điện năng"
+            android:gravity="center"
+            android:layout_marginEnd="5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tongDienNang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/tinhToan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tính tiền điện"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/header_title"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
-        android:weightSum="7"
-        android:layout_centerInParent="true">
+        android:layout_weight="1"
+        android:background="@drawable/button_press"
+        app:layout_constraintTop_toBottomOf="@id/topHead"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="10dp">
+        <TextView
+            android:text="@string/sttbac"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:text="@string/khoantieuthu"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:text="@string/dientieuthu"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:text="@string/dongia"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:text="@string/thanhtien"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:weightSum="6"
+        app:layout_constraintTop_toBottomOf="@id/header_title"
+        app:layout_constraintBottom_toTopOf="@id/tabKetQuaTinhToan"
+        android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/body01"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/table_row">
-            <TextView
-                android:text="@string/sttbac"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textStyle="bold" />
-            <TextView
-                android:text="@string/khoantieuthu"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textStyle="bold" />
-            <TextView
-                android:text="@string/dientieuthu"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textStyle="bold"/>
-            <TextView
-                android:text="@string/dongia"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textStyle="bold"/>
-            <TextView
-                android:text="@string/thanhtien"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/table_row_detail">
+            android:background="@drawable/table_row_detail"
+            app:layout_constraintTop_toBottomOf="@id/header_title"
+            android:layout_margin="10dp">
             <TextView
                 android:text="@string/bac1"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:text="@string/khoan1"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/dienTieuThuBac01"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/donGiaBac01"
                 android:text="1,678"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/thanhTienBac01"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/body02"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/table_row_detail">
+            android:background="@drawable/table_row_detail"
+            app:layout_constraintTop_toBottomOf="@id/body01"
+            android:layout_margin="10dp">
             <TextView
                 android:text="@string/bac2"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:text="@string/khoan2"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/dienTieuThuBac02"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/donGiaBac02"
                 android:text="1,734"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/thanhTienBac02"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/body03"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/table_row_detail">
+            android:background="@drawable/table_row_detail"
+            app:layout_constraintTop_toBottomOf="@id/body02"
+            android:layout_margin="10dp">
             <TextView
                 android:text="@string/bac3"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:text="@string/khoan3"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/dienTieuThuBac03"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/donGiaBac03"
                 android:text="2,014"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/thanhTienBac03"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/body04"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/table_row_detail">
+            android:background="@drawable/table_row_detail"
+            app:layout_constraintTop_toBottomOf="@id/body03"
+            android:layout_margin="10dp">
             <TextView
                 android:text="@string/bac4"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:text="@string/khoan4"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/dienTieuThuBac04"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/donGiaBac04"
                 android:text="2,536"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/thanhTienBac04"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/body05"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/table_row_detail">
+            android:background="@drawable/table_row_detail"
+            app:layout_constraintTop_toBottomOf="@id/body04"
+            android:layout_margin="10dp">
             <TextView
                 android:text="@string/bac5"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:text="@string/khoan5"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/dienTieuThuBac05"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/donGiaBac05"
                 android:text="2,834"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/thanhTienBac05"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/body06"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/table_row_detail">
+            android:background="@drawable/table_row_detail"
+            app:layout_constraintTop_toBottomOf="@id/body05"
+            android:layout_margin="10dp">
             <TextView
                 android:text="@string/bac6"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:text="@string/khoan6"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/dienTieuThuBac06"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/donGiaBac06"
@@ -283,32 +371,27 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/thanhTienBac06"
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/tabKetQuaTinhToan"
         android:orientation="vertical"
-        android:layout_below="@id/tabThongTinChiTiet"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:layout_weight="1"
-        android:weightSum="4">
-        <TextView
-            android:text="@string/ketquatieude"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:textStyle="bold" />
+        android:weightSum="4"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -319,7 +402,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/tongTienChuaThue"
                 android:gravity="end"
@@ -327,7 +411,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:textColor="@color/red"/>
+                android:textColor="@color/red"
+                />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -339,7 +424,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/tienThue"
                 android:gravity="end"
@@ -348,7 +434,8 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="@color/red"/>
-        </LinearLayout><LinearLayout
+        </LinearLayout>
+        <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -358,7 +445,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/tongTienThanhToan"
                 android:gravity="end"
@@ -372,7 +460,4 @@
 
     </LinearLayout>
 
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

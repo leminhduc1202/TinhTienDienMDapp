@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    tools:context=".HomeActivity"
+    android:layout_gravity="center">
+    <ImageView
+        android:id="@+id/avatarIC"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_app"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    <TextView
+        android:id="@+id/textView01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/avatarIC"
+        android:layout_marginTop="20dp"
+        android:text="Tính toán tiền điện từ số \n điện năng mà bạn sử dụng"
+        android:textAllCaps="true"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/tinhKetQua"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textView01"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/textView01"
+        app:layout_constraintRight_toRightOf="@id/textView01"
+        android:text="Tính tiền điện"
+
+        />
+     <Button
+         android:id="@+id/shareLink"
+         android:text="Chia sẻ"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintLeft_toLeftOf="parent"
+         app:layout_constraintRight_toRightOf="parent"
+         android:layout_marginBottom="50dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
