@@ -26,4 +26,5 @@
     <string name="tienDienChuaThue">Tiền điện chưa thuế:</string>
     <string name="thueGTGT">Thuế GTGT (10%) tiền điện:</string>
     <string name="tongCongthanhtoan">Tổng cộng tiền điện (đồng):</string>
+    <string name="so_dien_nang">Số điện năng</string>
 </resources>
