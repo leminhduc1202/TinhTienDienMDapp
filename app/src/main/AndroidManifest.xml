@@ -11,8 +11,10 @@
         android:theme="@style/Theme.TinhTienDienMDapp">
         <activity
             android:name=".ResultActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity android:name=".HomeActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
