@@ -20,15 +20,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.5" />
 
-    <Button
+    <mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
         android:id="@+id/tinhToan"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="5dp"
         android:layout_weight="1"
-        android:text="Tính tiền điện"
-        android:textColor="@color/black"
+        app:pb_text="Tính tiền điện"
+        app:pb_style="normal"
+        app:pb_margin_vertical="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tongDienNang"
         app:layout_constraintTop_toTopOf="parent" />

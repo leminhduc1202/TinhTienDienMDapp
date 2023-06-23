@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PrimaryButtonView">
+        <attr name="pb_text" format="string"/>
+        <attr name="pb_style" format="string"/>
+        <attr name="pb_margin_horizontal" format="dimension"/>
+        <attr name="pb_margin_vertical" format="dimension"/>
+    </declare-styleable>
+
+</resources>

@@ -7,7 +7,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import mdideas.devapp.tinhtiendienmdapp.databinding.ActivityResultBinding
+import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
 import java.text.NumberFormat
 import java.util.*
 
@@ -20,12 +22,23 @@ class ResultActivity : AppCompatActivity() {
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//    Nhap tong so dien nang tieu thu
 
-        binding.tinhToan.setOnClickListener {
-        // Khai tong dien muon tinh
-        val tongDienNang: Int = binding.tongDienNang.text.toString().toInt()
-        //dinh dang so them "," vao so tien
+        binding.apply {
+            tinhToan.handleEnable(false)
+            tongDienNang.doAfterTextChanged {
+                tinhToan.apply {
+                    handleEnable(it.toString().isNotEmpty())
+                    primaryButtonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
+                        override fun onClickPrimaryButtonView(view: View?) {
+                            calculateElectric(it.toString().toInt())
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun calculateElectric(electricNumber : Int){
         val nf: NumberFormat = NumberFormat.getInstance(Locale.US)
         //Khai don gia cac bac dien
         val donGiaBac1: Int = 1678
@@ -37,21 +50,21 @@ class ResultActivity : AppCompatActivity() {
         val thueGTGT: Int = 10
 
         //So dien tieu thu bac 1
-        val bac01: Int = if (tongDienNang >= 100) {
+        val bac01: Int = if (electricNumber >= 100) {
             100
         } else {
-            tongDienNang
+            electricNumber
         }
         binding.dienTieuThuBac01.text = bac01.toString()
         val thanhTien01: Int = bac01 * donGiaBac1
         binding.thanhTienBac01.text = nf.format(thanhTien01).toString()
 
         //So dien tieu thu bac 2
-        val bac02: Int = if (tongDienNang >= 200) {
+        val bac02: Int = if (electricNumber >= 200) {
             100
         } else {
-            if (tongDienNang < 200) {
-                tongDienNang - bac01
+            if (electricNumber < 200) {
+                electricNumber - bac01
             } else {
                 0
             }
@@ -61,11 +74,11 @@ class ResultActivity : AppCompatActivity() {
         binding.thanhTienBac02.text = nf.format(thanhTien02).toString()
 
         //So dien tieu thu bac 3
-        val bac03: Int = if (tongDienNang >= 400) {
+        val bac03: Int = if (electricNumber >= 400) {
             200
         } else {
-            if (tongDienNang < 400) {
-                tongDienNang - bac01 - bac02
+            if (electricNumber < 400) {
+                electricNumber - bac01 - bac02
             } else {
                 0
             }
@@ -75,11 +88,11 @@ class ResultActivity : AppCompatActivity() {
         binding.thanhTienBac03.text = nf.format(thanhTien03).toString()
 
         //So dien tieu thu bac 4
-        val bac04: Int = if (tongDienNang >= 600) {
+        val bac04: Int = if (electricNumber >= 600) {
             200
         } else {
-            if (tongDienNang < 600) {
-                tongDienNang - bac01 - bac02 - bac03
+            if (electricNumber < 600) {
+                electricNumber - bac01 - bac02 - bac03
             } else {
                 0
             }
@@ -89,11 +102,11 @@ class ResultActivity : AppCompatActivity() {
         binding.thanhTienBac04.text = nf.format(thanhTien04).toString()
 
         //So dien tieu thu bac 5
-        val bac05: Int = if (tongDienNang >= 800) {
+        val bac05: Int = if (electricNumber >= 800) {
             200
         } else {
-            if (tongDienNang < 800) {
-                tongDienNang - bac01 - bac02 - bac03 - bac04
+            if (electricNumber < 800) {
+                electricNumber - bac01 - bac02 - bac03 - bac04
             } else {
                 0
             }
@@ -103,8 +116,8 @@ class ResultActivity : AppCompatActivity() {
         binding.thanhTienBac05.text = nf.format(thanhTien05).toString()
 
         //So dien tieu thu bac 6
-        val bac06: Int = if (tongDienNang > 800) {
-            tongDienNang - bac01 - bac02 - bac03 - bac04 - bac05
+        val bac06: Int = if (electricNumber > 800) {
+            electricNumber - bac01 - bac02 - bac03 - bac04 - bac05
         } else {
             0
         }
@@ -118,30 +131,35 @@ class ResultActivity : AppCompatActivity() {
         binding.tongTienChuaThue.text = nf.format(tongTienChuaThue).toString()
         val tienThueGTGT: Int = tongTienChuaThue / thueGTGT
         binding.tienThue.text = nf.format(tienThueGTGT).toString()
-        binding.tongTienThanhToan.text = nf.format(tongTienChuaThue + tienThueGTGT).toString()
+        binding.tongTienThanhToan.text =
+            nf.format(tongTienChuaThue + tienThueGTGT).toString()
 // Alert Dialog
         val mAlertDialog = AlertDialog.Builder(this@ResultActivity)
         mAlertDialog.setTitle("Tổng tiền điện của bạn: ")
         mAlertDialog.setIcon(R.drawable.ic_app)
         mAlertDialog
-            .setMessage("Tiền điện chưa thuế: ${nf.format(tongTienChuaThue)} VNĐ \n"
-                        +"Tiền thuế: ${nf.format(tienThueGTGT)} VNĐ \n"
-                        +"Tổng tiền bao gồm thuế: ${nf.format(tongTienChuaThue + tienThueGTGT)} VNĐ")
+            .setMessage(
+                "Tiền điện chưa thuế: ${nf.format(tongTienChuaThue)} VNĐ \n"
+                        + "Tiền thuế: ${nf.format(tienThueGTGT)} VNĐ \n"
+                        + "Tổng tiền bao gồm thuế: ${nf.format(tongTienChuaThue + tienThueGTGT)} VNĐ"
+            )
         mAlertDialog.setCancelable(false)
-        mAlertDialog.setPositiveButton("OK"){_,_ ->
+        mAlertDialog.setPositiveButton("OK") { _, _ ->
             finish()
         }
-        mAlertDialog.setNegativeButton("Chi tiết"){_,_->
-            Toast.makeText(this@ResultActivity, "Chi tiết tiền điện", Toast.LENGTH_LONG).show()
+        mAlertDialog.setNegativeButton("Chi tiết") { _, _ ->
+            Toast.makeText(this@ResultActivity, "Chi tiết tiền điện", Toast.LENGTH_LONG)
+                .show()
         }
         mAlertDialog.create().show()
 //        Toast.makeText(applicationContext,"Tổng tiền điện của bạn bao gồm thuế là: ${nf.format(tongTienChuaThue + tienThueGTGT)} VNĐ",Toast.LENGTH_LONG).show()
         hideKeyboard(binding.tinhToan)
-        }
+
     }
+
     private fun hideKeyboard(view: View) {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken,0)
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }
 
