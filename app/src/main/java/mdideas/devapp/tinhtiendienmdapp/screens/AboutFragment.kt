@@ -1,9 +1,8 @@
 package mdideas.devapp.tinhtiendienmdapp.screens
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentAboutPageBinding
 
@@ -21,5 +20,24 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpWebView()
+    }
+
+    private fun setUpWebView() {
+        binding.webViewAbout.apply {
+            loadUrl("https://sites.google.com/view/mdideas/home-page?authuser=0")
+            settings.javaScriptEnabled = true
+            webViewClient = WebViewClient()
+            canGoBack()
+            setOnKeyListener(View.OnKeyListener { v, key, event ->
+                if (key == KeyEvent.KEYCODE_BACK && event.action == MotionEvent.ACTION_UP
+                    && this.canGoBack()
+                ) {
+                    this.goBack()
+                    return@OnKeyListener true
+                }
+                false
+            })
+        }
     }
 }

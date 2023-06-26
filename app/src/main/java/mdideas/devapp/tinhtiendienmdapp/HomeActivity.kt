@@ -2,6 +2,7 @@ package mdideas.devapp.tinhtiendienmdapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import mdideas.devapp.tinhtiendienmdapp.databinding.ActivityHomeBinding
 
@@ -15,6 +16,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/webViewEvn"
+    <TextView
+        android:id="@+id/tvCustomer"
+        android:text="@string/setting_page"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -34,7 +34,6 @@ class BottomTabBar @JvmOverloads constructor(
     var imageViewList: Array<ImageView>? = null
     private var textViewList: Array<TextView>? = null
     var position = 0
-    var viewPager: ViewPager2? = null
 
     private fun initView(attributeSet: AttributeSet?) {
         binding = LayoutBottomTabBarBinding.inflate(LayoutInflater.from(context), this, true)

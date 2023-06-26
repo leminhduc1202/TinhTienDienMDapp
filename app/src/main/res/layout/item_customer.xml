@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ctItemCustomer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
+        android:id="@+id/pbvCustomerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:pb_margin_horizontal="12dp"
+        app:pb_margin_vertical="12dp"
+        app:pb_style="normal"
+        app:pb_text="Tính tiền điện" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

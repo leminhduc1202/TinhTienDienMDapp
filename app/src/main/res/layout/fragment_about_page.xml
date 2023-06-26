@@ -3,9 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="@string/about_page"
-        android:gravity="center"
+    <WebView
+        android:id="@+id/webViewAbout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
