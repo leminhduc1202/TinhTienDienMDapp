@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ctBottomTabBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/pastel_green"
+    android:paddingBottom="5dp">
+
+    <View
+        android:id="@+id/lineTop"
+        android:background="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"/>
+
+    <ImageView
+        android:id="@+id/imgHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_home_selector"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toStartOf="@id/imgEvn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lineTop" />
+
+    <TextView
+        android:id="@+id/tvHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/home_page"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/imgHome"
+        app:layout_constraintStart_toStartOf="@id/imgHome"
+        app:layout_constraintTop_toBottomOf="@id/imgHome" />
+
+    <ImageView
+        android:id="@+id/imgEvn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_evn_selector"
+        app:layout_constraintEnd_toStartOf="@id/imgAbout"
+        app:layout_constraintStart_toEndOf="@id/tvHome"
+        app:layout_constraintTop_toTopOf="@id/imgHome" />
+
+    <TextView
+        android:id="@+id/tvEvn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/evn_page"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/imgEvn"
+        app:layout_constraintStart_toStartOf="@id/imgEvn"
+        app:layout_constraintTop_toBottomOf="@id/imgEvn" />
+
+    <ImageView
+        android:id="@+id/imgAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_about_selector"
+        app:layout_constraintEnd_toStartOf="@id/imgSetting"
+        app:layout_constraintStart_toEndOf="@id/imgEvn"
+        app:layout_constraintTop_toTopOf="@id/imgHome" />
+
+    <TextView
+        android:id="@+id/tvAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/about_page"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/imgAbout"
+        app:layout_constraintStart_toStartOf="@id/imgAbout"
+        app:layout_constraintTop_toBottomOf="@id/imgAbout" />
+
+    <ImageView
+        android:id="@+id/imgSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_setting_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgAbout"
+        app:layout_constraintTop_toTopOf="@id/imgHome" />
+
+    <TextView
+        android:id="@+id/tvSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/setting_page"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/imgSetting"
+        app:layout_constraintStart_toStartOf="@id/imgSetting"
+        app:layout_constraintTop_toBottomOf="@id/imgSetting" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

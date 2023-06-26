@@ -8,14 +8,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import mdideas.devapp.tinhtiendienmdapp.databinding.ActivityResultBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
+import mdideas.devapp.tinhtiendienmdapp.extention.ViewPagerAdapter
+import mdideas.devapp.tinhtiendienmdapp.screens.AboutFragment
+import mdideas.devapp.tinhtiendienmdapp.screens.EvnDataFragment
+import mdideas.devapp.tinhtiendienmdapp.screens.HomePageFragment
+import mdideas.devapp.tinhtiendienmdapp.screens.SettingFragment
 import java.text.NumberFormat
 import java.util.*
 
 class ResultActivity : AppCompatActivity() {
     lateinit var binding: ActivityResultBinding
-
+    private val lisFragment = ArrayList<Fragment>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,17 +34,35 @@ class ResultActivity : AppCompatActivity() {
             tongDienNang.doAfterTextChanged {
                 tinhToan.apply {
                     handleEnable(it.toString().isNotEmpty())
-                    primaryButtonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
-                        override fun onClickPrimaryButtonView(view: View?) {
-                            calculateElectric(it.toString().toInt())
+                    primaryButtonViewClickListener =
+                        object : PrimaryButtonView.OnPrimaryButtonView {
+                            override fun onClickPrimaryButtonView(view: View?) {
+                                calculateElectric(it.toString().toInt())
+                            }
                         }
-                    }
                 }
+            }
+        }
+        lisFragment.apply {
+            add(HomePageFragment())
+            add(EvnDataFragment())
+            add(AboutFragment())
+            add(SettingFragment())
+        }
+        innitViewPager(lisFragment)
+    }
+
+    private fun innitViewPager(lisFragment: ArrayList<Fragment>) {
+        binding.apply {
+            bTabBar.onTabClick(viewPagerMain)
+            viewPagerMain.apply {
+                isUserInputEnabled = false
+                adapter = ViewPagerAdapter(this@ResultActivity, lisFragment)
             }
         }
     }
 
-    private fun calculateElectric(electricNumber : Int){
+    private fun calculateElectric(electricNumber: Int) {
         val nf: NumberFormat = NumberFormat.getInstance(Locale.US)
         //Khai don gia cac bac dien
         val donGiaBac1: Int = 1678

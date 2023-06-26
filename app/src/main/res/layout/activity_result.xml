@@ -6,492 +6,515 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_ground"
-    android:padding="10dp"
     tools:context=".ResultActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/tongDienNang"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="@string/so_dien_nang"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.5" />
-
-    <mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
-        android:id="@+id/tinhToan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="5dp"
-        android:layout_weight="1"
-        app:pb_text="Tính tiền điện"
-        app:pb_style="normal"
-        app:pb_margin_vertical="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tongDienNang"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/header_title"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ctHome"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/button_press"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tongDienNang">
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bTabBar"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tongDienNang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/sttbac"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:hint="@string/so_dien_nang"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
+            android:id="@+id/tinhToan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/khoantieuthu"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/dientieuthu"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/dongia"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/thanhtien"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:weightSum="6"
-        app:layout_constraintBottom_toTopOf="@id/tvTongTienChuaThue"
-        app:layout_constraintTop_toBottomOf="@id/header_title">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tongDienNang"
+            app:layout_constraintTop_toTopOf="parent"
+            app:pb_margin_vertical="12dp"
+            app:pb_style="normal"
+            app:pb_text="Tính tiền điện" />
 
         <LinearLayout
-            android:id="@+id/body01"
+            android:id="@+id/header_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="@drawable/table_row_detail"
+            android:background="@drawable/button_press"
             android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tongDienNang">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/sttbac"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/khoantieuthu"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/dientieuthu"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/dongia"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/thanhtien"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:weightSum="6"
+            app:layout_constraintBottom_toTopOf="@id/tvTongTienChuaThue"
             app:layout_constraintTop_toBottomOf="@id/header_title">
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/body01"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/bac1"
-                android:textColor="@color/black" />
+                android:background="@drawable/table_row_detail"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/header_title">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/khoan1"
-                android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/bac1"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/dienTieuThuBac01"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/khoan1"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/donGiaBac01"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1,678"
-                android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/dienTieuThuBac01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/thanhTienBac01"
+                <TextView
+                    android:id="@+id/donGiaBac01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1,678"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/thanhTienBac01"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/body02"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
+                android:background="@drawable/table_row_detail"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/body01">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/bac2"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/khoan2"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/dienTieuThuBac02"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/donGiaBac02"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1,734"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/thanhTienBac02"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/body03"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_detail"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/body02">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/bac3"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/khoan3"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/dienTieuThuBac03"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/donGiaBac03"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2,014"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/thanhTienBac03"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/body04"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_detail"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/body03">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/bac4"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/khoan4"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/dienTieuThuBac04"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/donGiaBac04"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2,536"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/thanhTienBac04"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/body05"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_detail"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/body04">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/bac5"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/khoan5"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/dienTieuThuBac05"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/donGiaBac05"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2,834"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/thanhTienBac05"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/body06"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_detail"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/body05">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/bac6"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/khoan6"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/dienTieuThuBac06"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/donGiaBac06"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2,927"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/thanhTienBac06"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/body02"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/table_row_detail"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/body01">
+        <TextView
+            android:id="@+id/tvTongTienChuaThue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/tienDienChuaThue"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvTienThue"
+            app:layout_constraintEnd_toEndOf="@id/tvTienThue"
+            app:layout_constraintStart_toStartOf="@id/tvTienThue" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/bac2"
-                android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tongTienChuaThue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvTongTienChuaThue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTongTienChuaThue"
+            app:layout_constraintTop_toTopOf="@id/tvTongTienChuaThue" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/khoan2"
-                android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tvTienThue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/thueGTGT"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvTitleTongTien"
+            app:layout_constraintEnd_toEndOf="@id/tvTitleTongTien"
+            app:layout_constraintStart_toStartOf="@id/tvTitleTongTien" />
 
-            <TextView
-                android:id="@+id/dienTieuThuBac02"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tienThue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvTienThue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTienThue"
+            app:layout_constraintTop_toTopOf="@id/tvTienThue" />
 
-            <TextView
-                android:id="@+id/donGiaBac02"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1,734"
-                android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tvTitleTongTien"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/tongCongthanhtoan"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.5" />
 
-            <TextView
-                android:id="@+id/thanhTienBac02"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tongTienThanhToan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitleTongTien"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvTitleTongTien"
+            app:layout_constraintTop_toTopOf="@id/tvTitleTongTien" />
 
-        <LinearLayout
-            android:id="@+id/body03"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/table_row_detail"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/body02">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/bac3"
-                android:textColor="@color/black" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/khoan3"
-                android:textColor="@color/black" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerMain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bTabBar"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/dienTieuThuBac03"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/donGiaBac03"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="2,014"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/thanhTienBac03"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/body04"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/table_row_detail"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/body03">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/bac4"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/khoan4"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/dienTieuThuBac04"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/donGiaBac04"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="2,536"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/thanhTienBac04"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/body05"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/table_row_detail"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/body04">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/bac5"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/khoan5"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/dienTieuThuBac05"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/donGiaBac05"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="2,834"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/thanhTienBac05"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/body06"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/table_row_detail"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/body05">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/bac6"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/khoan6"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/dienTieuThuBac06"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/donGiaBac06"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="2,927"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/thanhTienBac06"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvTongTienChuaThue"
-        android:layout_width="0dp"
+    <mdideas.devapp.tinhtiendienmdapp.extention.BottomTabBar
+        android:id="@+id/bTabBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/tienDienChuaThue"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/tvTienThue"
-        app:layout_constraintEnd_toEndOf="@id/tvTienThue"
-        app:layout_constraintStart_toStartOf="@id/tvTienThue" />
-
-    <TextView
-        android:id="@+id/tongTienChuaThue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:textAlignment="viewEnd"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/tvTongTienChuaThue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvTongTienChuaThue"
-        app:layout_constraintTop_toTopOf="@id/tvTongTienChuaThue" />
-
-    <TextView
-        android:id="@+id/tvTienThue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:text="@string/thueGTGT"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/tvTitleTongTien"
-        app:layout_constraintEnd_toEndOf="@id/tvTitleTongTien"
-        app:layout_constraintStart_toStartOf="@id/tvTitleTongTien" />
-
-    <TextView
-        android:id="@+id/tienThue"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:textAlignment="viewEnd"
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/tvTienThue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvTienThue"
-        app:layout_constraintTop_toTopOf="@id/tvTienThue" />
-
-    <TextView
-        android:id="@+id/tvTitleTongTien"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/tongCongthanhtoan"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.5" />
-
-    <TextView
-        android:id="@+id/tongTienThanhToan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:textAlignment="viewEnd"
-        android:textColor="@color/red"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/tvTitleTongTien"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvTitleTongTien"
-        app:layout_constraintTop_toTopOf="@id/tvTitleTongTien" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

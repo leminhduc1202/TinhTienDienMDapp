@@ -27,4 +27,8 @@
     <string name="thueGTGT">Thuế GTGT (10%) tiền điện:</string>
     <string name="tongCongthanhtoan">Tổng cộng tiền điện (đồng):</string>
     <string name="so_dien_nang">Số điện năng</string>
+    <string name="home_page">Home</string>
+    <string name="evn_page">EVN</string>
+    <string name="about_page">About</string>
+    <string name="setting_page">Setting</string>
 </resources>
