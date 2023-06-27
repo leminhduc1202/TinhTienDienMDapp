@@ -1,6 +1,7 @@
 package mdideas.devapp.tinhtiendienmdapp.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,14 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.*
 import mdideas.devapp.tinhtiendienmdapp.R
+import mdideas.devapp.tinhtiendienmdapp.ResultActivity
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentHomePageBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
 import mdideas.devapp.tinhtiendienmdapp.model.CustomerData
+import mdideas.devapp.tinhtiendienmdapp.model.EvnData
+import mdideas.devapp.tinhtiendienmdapp.model.EvnResponse
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerAdapter
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerDetailFragment
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerViewPagerAdapter
@@ -25,6 +30,15 @@ class HomePageFragment : Fragment() {
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var customerAdapter: CustomerAdapter
     private var customerPagerAdapter: CustomerViewPagerAdapter? = null
+    private val database = FirebaseDatabase.getInstance(ResultActivity.URL_REALTIME_DATABASE)
+    private var reference: DatabaseReference? = null
+    val listEvnData = ArrayList<EvnData>()
+    val listEvnCitizen = ArrayList<EvnData>()
+    val listEvnCompany = ArrayList<EvnData>()
+    val listEvnIndustry = ArrayList<EvnData>()
+    val listEvnAdmin = ArrayList<EvnData>()
+    val listEvnHospital = ArrayList<EvnData>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +51,7 @@ class HomePageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        reference = database.getReference(ResultActivity.URL_EVN_DATA)
         binding.apply {
             tinhToan.handleEnable(false)
             tongDienNang.doAfterTextChanged {
@@ -51,6 +66,35 @@ class HomePageFragment : Fragment() {
                 }
             }
         }
+        reference?.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val evnResponse = snapshot.getValue(EvnResponse::class.java)
+                listEvnData.addAll(evnResponse?.listEvn ?: arrayListOf())
+                listEvnData.forEach {
+                    when (it.typedCustomer) {
+                        ResultActivity.TYPED_CITIZEN -> {
+                            listEvnCitizen.add(it)
+                        }
+                        ResultActivity.TYPED_COMPANY -> {
+                            listEvnCompany.add(it)
+                        }
+                        ResultActivity.TYPED_INDUSTRY -> {
+                            listEvnIndustry.add(it)
+                        }
+                        ResultActivity.TYPED_ADMIN -> {
+                            listEvnAdmin.add(it)
+                        }
+                        else -> {
+                            listEvnHospital.add(it)
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("error", error.message)
+            }
+        })
 
         setUpViewPager()
         setUpAdapter()
@@ -64,8 +108,6 @@ class HomePageFragment : Fragment() {
             add(CustomerData(2, "Sản xuất"))
             add(CustomerData(3, "Hành chính sự nghiệp"))
             add(CustomerData(4, "Cơ quan bệnh viện"))
-            add(CustomerData(5, "Bán buôn"))
-            add(CustomerData(6, "Bán buôn tổ hợp"))
         }
 
         customerAdapter = CustomerAdapter(customerList)
@@ -83,18 +125,15 @@ class HomePageFragment : Fragment() {
     private fun setUpViewPager() {
         customerPagerAdapter = CustomerViewPagerAdapter(parentFragmentManager, lifecycle)
         customerPagerAdapter?.apply {
-            addFragment(CustomerDetailFragment.newInstance(0))
-            addFragment(CustomerDetailFragment.newInstance(1))
-            addFragment(CustomerDetailFragment.newInstance(2))
-            addFragment(CustomerDetailFragment.newInstance(3))
-            addFragment(CustomerDetailFragment.newInstance(4))
-            addFragment(CustomerDetailFragment.newInstance(5))
-            addFragment(CustomerDetailFragment.newInstance(6))
+            addFragment(CustomerDetailFragment.newInstance(0, listEvnCitizen))
+            addFragment(CustomerDetailFragment.newInstance(1, listEvnCompany))
+            addFragment(CustomerDetailFragment.newInstance(2, listEvnIndustry))
+            addFragment(CustomerDetailFragment.newInstance(3, listEvnAdmin))
+            addFragment(CustomerDetailFragment.newInstance(4, listEvnHospital))
         }
         binding.viewPagerTyped.apply {
             isUserInputEnabled = false
             adapter = customerPagerAdapter
-            currentItem = 0
         }
     }
 

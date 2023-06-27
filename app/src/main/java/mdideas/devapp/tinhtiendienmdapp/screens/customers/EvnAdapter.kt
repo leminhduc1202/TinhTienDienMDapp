@@ -10,7 +10,7 @@ class EvnAdapter() : RecyclerView.Adapter<EvnAdapter.EvnAdapterViewHolder>() {
 
     private val listEvnData = ArrayList<EvnData>()
 
-    fun setLisEvent(listEvn: ArrayList<EvnData>) {
+    fun setListEvent(listEvn: ArrayList<EvnData>) {
         this.listEvnData.apply {
             clear()
             addAll(listEvn)

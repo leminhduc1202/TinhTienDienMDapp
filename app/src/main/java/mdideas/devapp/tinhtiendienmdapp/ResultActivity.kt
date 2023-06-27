@@ -26,7 +26,12 @@ class ResultActivity : AppCompatActivity() {
     companion object {
         const val URL_REALTIME_DATABASE =
             "https://tinhtiendienmdapp-default-rtdb.asia-southeast1.firebasedatabase.app"
-        const val URL_EVN_DATA = "evn_citizen_data"
+        const val URL_EVN_DATA = "evn_data"
+        const val TYPED_CITIZEN = "EVN CITIZEN"
+        const val TYPED_COMPANY = "EVN COMPANY"
+        const val TYPED_INDUSTRY = "EVN INDUSTRY"
+        const val TYPED_ADMIN = "EVN ADMIN"
+        const val TYPED_HOSPITAL = "EVN HOSPITAL"
     }
 
     lateinit var binding: ActivityResultBinding
