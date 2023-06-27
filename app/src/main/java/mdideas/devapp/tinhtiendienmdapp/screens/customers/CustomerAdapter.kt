@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import mdideas.devapp.tinhtiendienmdapp.databinding.ItemCustomerBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
+import mdideas.devapp.tinhtiendienmdapp.model.CustomerData
 
 class CustomerAdapter(
     private val customerList: ArrayList<CustomerData>,
@@ -14,7 +14,7 @@ class CustomerAdapter(
     ) :
     RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
-    private var onItemClick: OnItemClickCustomer ? = null
+    private var onItemClick: OnItemClickCustomer? = null
 
     fun setListenerItem(listener: OnItemClickCustomer) {
         this.onItemClick = listener
@@ -49,11 +49,6 @@ class CustomerAdapter(
     }
 
     override fun getItemCount(): Int = customerList.size
-
-    data class CustomerData(
-        val id: Int?,
-        val name: String?
-    )
 
     interface OnItemClickCustomer {
         fun onClickItemCustomer(customerData: CustomerData)

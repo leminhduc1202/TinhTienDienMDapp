@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import mdideas.devapp.tinhtiendienmdapp.R
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentHomePageBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
+import mdideas.devapp.tinhtiendienmdapp.model.CustomerData
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerAdapter
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerDetailFragment
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerViewPagerAdapter
@@ -23,7 +24,6 @@ class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var customerAdapter: CustomerAdapter
-    private val lisFragment = ArrayList<Fragment>()
     private var customerPagerAdapter: CustomerViewPagerAdapter? = null
 
     override fun onCreateView(
@@ -57,15 +57,15 @@ class HomePageFragment : Fragment() {
     }
 
     private fun setUpAdapter() {
-        val customerList = ArrayList<CustomerAdapter.CustomerData>()
+        val customerList = ArrayList<CustomerData>()
         customerList.apply {
-            add(CustomerAdapter.CustomerData(0, "Sinh hoạt"))
-            add(CustomerAdapter.CustomerData(1, "Kinh doanh"))
-            add(CustomerAdapter.CustomerData(2, "Sản xuất"))
-            add(CustomerAdapter.CustomerData(3, "Hành chính sự nghiệp"))
-            add(CustomerAdapter.CustomerData(4, "Cơ quan bệnh viện"))
-            add(CustomerAdapter.CustomerData(5, "Bán buôn"))
-            add(CustomerAdapter.CustomerData(6, "Bán buôn tổ hợp"))
+            add(CustomerData(0, "Sinh hoạt"))
+            add(CustomerData(1, "Kinh doanh"))
+            add(CustomerData(2, "Sản xuất"))
+            add(CustomerData(3, "Hành chính sự nghiệp"))
+            add(CustomerData(4, "Cơ quan bệnh viện"))
+            add(CustomerData(5, "Bán buôn"))
+            add(CustomerData(6, "Bán buôn tổ hợp"))
         }
 
         customerAdapter = CustomerAdapter(customerList)
@@ -74,7 +74,7 @@ class HomePageFragment : Fragment() {
             adapter = customerAdapter
         }
         customerAdapter.setListenerItem(object : CustomerAdapter.OnItemClickCustomer {
-            override fun onClickItemCustomer(customerData: CustomerAdapter.CustomerData) {
+            override fun onClickItemCustomer(customerData: CustomerData) {
                 binding.viewPagerTyped.currentItem = customerData.id!!
             }
         })

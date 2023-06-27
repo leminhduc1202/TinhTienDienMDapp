@@ -6,10 +6,10 @@
     <string name="hotroCovid">Hỗ trợ COVID \n (mặc định 10%)</string>
     <string name="tinhtoan">tính tiền điện</string>
     <string name="sttbac">STT Bậc</string>
-    <string name="khoantieuthu">Khoản \n tiêu thụ</string>
-    <string name="dientieuthu">Điện \n tiêu thụ (kWh)</string>
-    <string name="dongia">Đơn giá\n (đồng)</string>
-    <string name="thanhtien">Thành tiền</string>
+    <string name="khoantieuthu">Khoản tiêu thụ</string>
+    <string name="dientieuthu">Điện tiêu thụ (kWh)</string>
+    <string name="dongia">Đơn giá (đồng/kWh)</string>
+    <string name="thanhtien">Thành tiền (đồng)</string>
     <string name="bac1">Bậc 1</string>
     <string name="khoan1">Cho kWh từ \n 0 - 100</string>
     <string name="bac2">Bậc 2</string>
