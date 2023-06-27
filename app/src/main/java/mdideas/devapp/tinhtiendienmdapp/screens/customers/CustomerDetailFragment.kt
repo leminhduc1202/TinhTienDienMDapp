@@ -1,20 +1,31 @@
 package mdideas.devapp.tinhtiendienmdapp.screens.customers
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.URL_EVN_DATA
+import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.URL_REALTIME_DATABASE
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentDetailCustomersBinding
 import mdideas.devapp.tinhtiendienmdapp.model.EvnData
+import mdideas.devapp.tinhtiendienmdapp.model.EvnResponse
 
 class CustomerDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailCustomersBinding
     var positionType = 0
     private var evnAdapter = EvnAdapter()
+    private val database = FirebaseDatabase.getInstance(URL_REALTIME_DATABASE)
+    private val reference = database.getReference(URL_EVN_DATA)
+
     companion object {
         const val TYPE_CUSTOMER = "TYPE_CUSTOMER"
         fun newInstance(position: Int): CustomerDetailFragment {
@@ -83,15 +94,18 @@ class CustomerDetailFragment : Fragment() {
                 adapter = evnAdapter
             }
         }
+
         val listEvnData = ArrayList<EvnData>()
-        listEvnData.apply {
-            add(EvnData(0, "Bac thang 1", 1728, 50, 0))
-            add(EvnData(1, "Bac thang 2", 1786, 50, 0))
-            add(EvnData(2, "Bac thang 3", 2074,100, 0))
-            add(EvnData(3, "Bac thang 4", 2612, 100, 0))
-            add(EvnData(4, "Bac thang 5", 2919, 100, 0))
-            add(EvnData(5, "Bac thang 6", 3015, 0, 0))
-        }
-        evnAdapter.setLisEvent(listEvnData)
+        reference.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val evnResponse = snapshot.getValue(EvnResponse::class.java)
+                evnResponse?.listEvn?.let { listEvnData.addAll(it) }
+                evnAdapter.setLisEvent(listEvnData)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("error", error.message)
+            }
+        })
     }
 }

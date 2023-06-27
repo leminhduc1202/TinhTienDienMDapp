@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
 import mdideas.devapp.tinhtiendienmdapp.databinding.ActivityResultBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
 import mdideas.devapp.tinhtiendienmdapp.extention.ViewPagerAdapter
@@ -20,14 +22,23 @@ import java.text.NumberFormat
 import java.util.*
 
 class ResultActivity : AppCompatActivity() {
+
+    companion object {
+        const val URL_REALTIME_DATABASE =
+            "https://tinhtiendienmdapp-default-rtdb.asia-southeast1.firebasedatabase.app"
+        const val URL_EVN_DATA = "evn_citizen_data"
+    }
+
     lateinit var binding: ActivityResultBinding
     private val lisFragment = ArrayList<Fragment>()
+    private val database = FirebaseDatabase.getInstance(URL_REALTIME_DATABASE)
+    private val reference = database.getReference(URL_EVN_DATA)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        FirebaseApp.initializeApp(this)
 
         binding.apply {
             tinhToan.handleEnable(false)
