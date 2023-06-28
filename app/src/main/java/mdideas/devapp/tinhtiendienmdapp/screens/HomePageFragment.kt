@@ -16,12 +16,13 @@ import mdideas.devapp.tinhtiendienmdapp.R
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentHomePageBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
+import mdideas.devapp.tinhtiendienmdapp.extention.gone
+import mdideas.devapp.tinhtiendienmdapp.extention.visible
 import mdideas.devapp.tinhtiendienmdapp.model.CustomerData
 import mdideas.devapp.tinhtiendienmdapp.model.EvnData
 import mdideas.devapp.tinhtiendienmdapp.model.EvnResponse
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerAdapter
-import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerDetailFragment
-import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerViewPagerAdapter
+import mdideas.devapp.tinhtiendienmdapp.screens.customers.EvnAdapter
 import java.text.NumberFormat
 import java.util.*
 
@@ -29,7 +30,7 @@ class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var customerAdapter: CustomerAdapter
-    private var customerPagerAdapter: CustomerViewPagerAdapter? = null
+    private var evnAdapter = EvnAdapter()
     private val database = FirebaseDatabase.getInstance(ResultActivity.URL_REALTIME_DATABASE)
     private var reference: DatabaseReference? = null
     val listEvnData = ArrayList<EvnData>()
@@ -65,8 +66,9 @@ class HomePageFragment : Fragment() {
                         }
                 }
             }
+            tvSelectCustomer.visible()
         }
-        reference?.addValueEventListener(object : ValueEventListener{
+        reference?.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val evnResponse = snapshot.getValue(EvnResponse::class.java)
                 listEvnData.addAll(evnResponse?.listEvn ?: arrayListOf())
@@ -95,19 +97,18 @@ class HomePageFragment : Fragment() {
                 Log.d("error", error.message)
             }
         })
-
-        setUpViewPager()
-        setUpAdapter()
+        setEvnDataAdapter()
+        setCustomersAdapter()
     }
 
-    private fun setUpAdapter() {
+    private fun setCustomersAdapter() {
         val customerList = ArrayList<CustomerData>()
         customerList.apply {
-            add(CustomerData(0, "Sinh hoạt"))
-            add(CustomerData(1, "Kinh doanh"))
-            add(CustomerData(2, "Sản xuất"))
-            add(CustomerData(3, "Hành chính sự nghiệp"))
-            add(CustomerData(4, "Cơ quan bệnh viện"))
+            add(CustomerData(0, "Sinh hoạt", false))
+            add(CustomerData(1, "Kinh doanh", false))
+            add(CustomerData(2, "Sản xuất", false))
+            add(CustomerData(3, "Hành chính sự nghiệp", false))
+            add(CustomerData(4, "Cơ quan bệnh viện", false))
         }
 
         customerAdapter = CustomerAdapter(customerList)
@@ -117,23 +118,34 @@ class HomePageFragment : Fragment() {
         }
         customerAdapter.setListenerItem(object : CustomerAdapter.OnItemClickCustomer {
             override fun onClickItemCustomer(customerData: CustomerData) {
-                binding.viewPagerTyped.currentItem = customerData.id!!
+                binding.tvSelectCustomer.gone()
+                when (customerData.id) {
+                    0 -> {
+                        evnAdapter.setListEvent(listEvnCitizen)
+                    }
+                    1 -> {
+                        evnAdapter.setListEvent(listEvnCompany)
+                    }
+                    2 -> {
+                        evnAdapter.setListEvent(listEvnIndustry)
+                    }
+                    3 -> {
+                        evnAdapter.setListEvent(listEvnAdmin)
+                    }
+                    4 -> {
+                        evnAdapter.setListEvent(listEvnHospital)
+                    }
+                }
             }
         })
     }
 
-    private fun setUpViewPager() {
-        customerPagerAdapter = CustomerViewPagerAdapter(parentFragmentManager, lifecycle)
-        customerPagerAdapter?.apply {
-            addFragment(CustomerDetailFragment.newInstance(0, listEvnCitizen))
-            addFragment(CustomerDetailFragment.newInstance(1, listEvnCompany))
-            addFragment(CustomerDetailFragment.newInstance(2, listEvnIndustry))
-            addFragment(CustomerDetailFragment.newInstance(3, listEvnAdmin))
-            addFragment(CustomerDetailFragment.newInstance(4, listEvnHospital))
-        }
-        binding.viewPagerTyped.apply {
-            isUserInputEnabled = false
-            adapter = customerPagerAdapter
+    private fun setEvnDataAdapter() {
+        binding.apply {
+            rcvData.apply {
+                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                adapter = evnAdapter
+            }
         }
     }
 

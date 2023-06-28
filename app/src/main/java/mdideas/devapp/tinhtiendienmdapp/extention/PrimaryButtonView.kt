@@ -27,6 +27,12 @@ class PrimaryButtonView @JvmOverloads constructor(
             field = value
         }
 
+    var setButtonColor: Boolean? = null
+        set(value) {
+            binding.nameBtn.setTextColor(if (value == true) resources.getColor(R.color.white, null) else resources.getColor(R.color.black, null))
+            field = value
+        }
+
     private var isLoading: Boolean? = null
         set(value) {
             binding.nameBtn.handleGoneVisibility(value != true)

@@ -31,5 +31,6 @@
     <string name="evn_page">EVN</string>
     <string name="about_page">About</string>
     <string name="setting_page">Setting</string>
+    <string name="title_selected_customer">Chọn đối tượng khách hàng</string>
 
 </resources>
