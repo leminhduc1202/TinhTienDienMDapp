@@ -27,7 +27,7 @@ class CustomerAdapter(
         fun bindView(customer: CustomerData) {
             binding.pbvCustomerName.apply {
                 buttontext = customer.name
-                primaryButtonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
+                buttonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
                     override fun onClickPrimaryButtonView(view: View?) {
                         onItemClick?.onClickItemCustomer(customer)
                         lastSelectedPosition = selectedPosition
