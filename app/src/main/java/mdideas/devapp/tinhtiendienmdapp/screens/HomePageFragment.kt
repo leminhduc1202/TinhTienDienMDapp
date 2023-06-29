@@ -1,22 +1,30 @@
 package mdideas.devapp.tinhtiendienmdapp.screens
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.*
 import mdideas.devapp.tinhtiendienmdapp.R
+import mdideas.devapp.tinhtiendienmdapp.ResultActivity
+import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.TYPED_CITIZEN
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentHomePageBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
+import mdideas.devapp.tinhtiendienmdapp.extention.gone
+import mdideas.devapp.tinhtiendienmdapp.extention.visible
 import mdideas.devapp.tinhtiendienmdapp.model.CustomerData
+import mdideas.devapp.tinhtiendienmdapp.model.EvnData
+import mdideas.devapp.tinhtiendienmdapp.model.EvnResponse
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerAdapter
-import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerDetailFragment
-import mdideas.devapp.tinhtiendienmdapp.screens.customers.CustomerViewPagerAdapter
+import mdideas.devapp.tinhtiendienmdapp.screens.customers.EvnAdapter
 import java.text.NumberFormat
 import java.util.*
 
@@ -24,7 +32,16 @@ class HomePageFragment : Fragment() {
 
     private lateinit var binding: FragmentHomePageBinding
     private lateinit var customerAdapter: CustomerAdapter
-    private var customerPagerAdapter: CustomerViewPagerAdapter? = null
+    private var evnAdapter = EvnAdapter()
+    private val database = FirebaseDatabase.getInstance(ResultActivity.URL_REALTIME_DATABASE)
+    private var reference: DatabaseReference? = null
+    val listEvnData = ArrayList<EvnData>()
+    val listEvnCitizen = ArrayList<EvnData>()
+    val listEvnCompany = ArrayList<EvnData>()
+    val listEvnIndustry = ArrayList<EvnData>()
+    val listEvnAdmin = ArrayList<EvnData>()
+    val listEvnHospital = ArrayList<EvnData>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +54,13 @@ class HomePageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        reference = database.getReference(ResultActivity.URL_EVN_DATA)
         binding.apply {
             tinhToan.handleEnable(false)
             tongDienNang.doAfterTextChanged {
                 tinhToan.apply {
                     handleEnable(it.toString().isNotEmpty())
-                    primaryButtonViewClickListener =
+                    buttonViewClickListener =
                         object : PrimaryButtonView.OnPrimaryButtonView {
                             override fun onClickPrimaryButtonView(view: View?) {
                                 calculateElectric(it.toString().toInt())
@@ -50,22 +68,65 @@ class HomePageFragment : Fragment() {
                         }
                 }
             }
+            tvSelectCustomer.visible()
         }
+        reference?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val evnResponse = snapshot.getValue(EvnResponse::class.java)
+                listEvnData.addAll(evnResponse?.listEvn ?: arrayListOf())
+                listEvnData.forEach {
+                    when (it.typedCustomer) {
+                        ResultActivity.TYPED_CITIZEN -> {
+                            listEvnCitizen.add(it)
+                        }
+                        ResultActivity.TYPED_COMPANY -> {
+                            listEvnCompany.add(it)
+                        }
+                        ResultActivity.TYPED_INDUSTRY -> {
+                            listEvnIndustry.add(it)
+                        }
+                        ResultActivity.TYPED_ADMIN -> {
+                            listEvnAdmin.add(it)
+                        }
+                        else -> {
+                            listEvnHospital.add(it)
+                        }
+                    }
+                }
+            }
 
-        setUpViewPager()
-        setUpAdapter()
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("error", error.message)
+            }
+        })
+        setEvnDataAdapter()
+        setCustomersAdapter()
+
+        binding.inputText.addTextChangedListener {
+            binding.pbvCalculate.apply {
+                handleEnable(it.toString().isNotEmpty())
+                buttonViewClickListener =
+                    object : PrimaryButtonView.OnPrimaryButtonView {
+                        override fun onClickPrimaryButtonView(view: View?) {
+                            calculateElectricOutput(
+                                TYPED_CITIZEN,
+                                it.toString().toInt(),
+                                listEvnCitizen
+                            )
+                        }
+                    }
+            }
+        }
     }
 
-    private fun setUpAdapter() {
+    private fun setCustomersAdapter() {
         val customerList = ArrayList<CustomerData>()
         customerList.apply {
-            add(CustomerData(0, "Sinh hoạt"))
-            add(CustomerData(1, "Kinh doanh"))
-            add(CustomerData(2, "Sản xuất"))
-            add(CustomerData(3, "Hành chính sự nghiệp"))
-            add(CustomerData(4, "Cơ quan bệnh viện"))
-            add(CustomerData(5, "Bán buôn"))
-            add(CustomerData(6, "Bán buôn tổ hợp"))
+            add(CustomerData(0, "Sinh hoạt", false))
+            add(CustomerData(1, "Kinh doanh", false))
+            add(CustomerData(2, "Sản xuất", false))
+            add(CustomerData(3, "Hành chính sự nghiệp", false))
+            add(CustomerData(4, "Cơ quan bệnh viện", false))
         }
 
         customerAdapter = CustomerAdapter(customerList)
@@ -75,27 +136,131 @@ class HomePageFragment : Fragment() {
         }
         customerAdapter.setListenerItem(object : CustomerAdapter.OnItemClickCustomer {
             override fun onClickItemCustomer(customerData: CustomerData) {
-                binding.viewPagerTyped.currentItem = customerData.id!!
+                binding.tvSelectCustomer.gone()
+                when (customerData.id) {
+                    0 -> {
+                        evnAdapter.setListEvent(listEvnCitizen)
+                    }
+                    1 -> {
+                        evnAdapter.setListEvent(listEvnCompany)
+                    }
+                    2 -> {
+                        evnAdapter.setListEvent(listEvnIndustry)
+                    }
+                    3 -> {
+                        evnAdapter.setListEvent(listEvnAdmin)
+                    }
+                    4 -> {
+                        evnAdapter.setListEvent(listEvnHospital)
+                    }
+                }
             }
         })
     }
 
-    private fun setUpViewPager() {
-        customerPagerAdapter = CustomerViewPagerAdapter(parentFragmentManager, lifecycle)
-        customerPagerAdapter?.apply {
-            addFragment(CustomerDetailFragment.newInstance(0))
-            addFragment(CustomerDetailFragment.newInstance(1))
-            addFragment(CustomerDetailFragment.newInstance(2))
-            addFragment(CustomerDetailFragment.newInstance(3))
-            addFragment(CustomerDetailFragment.newInstance(4))
-            addFragment(CustomerDetailFragment.newInstance(5))
-            addFragment(CustomerDetailFragment.newInstance(6))
+    private fun setEvnDataAdapter() {
+        binding.apply {
+            rcvData.apply {
+                layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+                adapter = evnAdapter
+            }
         }
-        binding.viewPagerTyped.apply {
-            isUserInputEnabled = false
-            adapter = customerPagerAdapter
-            currentItem = 0
+    }
+
+    private fun calculateElectricOutput(
+        typeCustomer: String,
+        outPut: Int,
+        listEvn: ArrayList<EvnData>
+    ) {
+        val nf: NumberFormat = NumberFormat.getInstance(Locale.US)
+        val listEvnOutput = ArrayList<EvnData>()
+        when (typeCustomer) {
+            ResultActivity.TYPED_CITIZEN -> {
+                val listPrice = ArrayList<Int>()
+                val listThreshold = ArrayList<Int>()
+                val listCitizen = ArrayList<EvnData>()
+                listEvn.forEach {
+                    it.electricPrice?.let { it1 -> listPrice.add(it1) }
+                    it.electricOutput?.let { it1 -> listThreshold.add(it1) }
+                }
+                val billResult = calculateElectricityBillDetail(outPut, listPrice, listThreshold)
+                for (i in 0 until billResult.first.size) {
+                    val citizenBill = billResult.first[i]
+                    val evnData = listEvn[i]
+                    listCitizen.add(
+                        EvnData(
+                            TYPED_CITIZEN,
+                            evnData.typedPrice,
+                            evnData.electricPrice,
+                            citizenBill.consumedUnits,
+                            citizenBill.billAmount,
+                            ""
+                        )
+                    )
+                }
+                evnAdapter.setListEvent(listCitizen)
+                binding.tvTotalAmount.apply {
+                    visible()
+                    text = getString(R.string.total_amount, nf.format(billResult.second))
+                }
+                println("Bậc thang $listCitizen")
+                println("Bậc thang ${billResult.second}")
+            }
+            ResultActivity.TYPED_COMPANY -> {
+
+            }
+            ResultActivity.TYPED_INDUSTRY -> {
+
+            }
+            ResultActivity.TYPED_ADMIN -> {
+
+            }
+            else -> {
+
+            }
         }
+        listEvnOutput.addAll(listEvn)
+    }
+
+    data class BillItem(val consumedUnits: Int, val billAmount: Int)
+
+    private fun calculateElectricityBillDetail(
+        units: Int,
+        priceList: ArrayList<Int>,
+        thresholdList: ArrayList<Int>
+    ): Pair<ArrayList<BillItem>, Int> {
+        val billList = ArrayList<BillItem>()
+        val totalBill: Pair<ArrayList<BillItem>, Int>
+        var totalElectricBill = 0
+        var remainingUnits = units
+
+        for (i in 0 until priceList.size) {
+            val currentPrice = priceList[i]
+            val threshold = thresholdList[i] // Ngưỡng của bậc thang
+
+            if (i < 5) {
+                if (remainingUnits > threshold) {
+                    val consumedUnits = threshold
+                    val currentBill = consumedUnits * currentPrice
+                    billList.add(BillItem(consumedUnits, currentBill))
+                    totalElectricBill += consumedUnits * currentPrice
+                    remainingUnits -= consumedUnits
+                } else {
+                    val currentBill = remainingUnits * currentPrice
+                    billList.add(BillItem(remainingUnits, currentBill))
+                    totalElectricBill += remainingUnits * currentPrice
+                    break
+                }
+            } else {
+                val consumedUnits = remainingUnits
+                val currentBill = consumedUnits * currentPrice
+                billList.add(BillItem(consumedUnits, currentBill))
+                totalElectricBill += remainingUnits * currentPrice
+                break
+            }
+        }
+        totalBill = Pair(billList, totalElectricBill)
+        return totalBill
     }
 
     private fun calculateElectric(electricNumber: Int) {

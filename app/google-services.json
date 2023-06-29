@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "268145841476",
+    "project_id": "tinhtiendienmdapp",
+    "storage_bucket": "tinhtiendienmdapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268145841476:android:186f9d42934a35d59d3311",
+        "android_client_info": {
+          "package_name": "mdideas.devapp.tinhtiendienmdapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268145841476-lo1b67pm4q9s9iem5rncv01206q76m6c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYTuUeotW5L-H25v1sSB8HDzKfp0vzUOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268145841476-lo1b67pm4q9s9iem5rncv01206q76m6c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

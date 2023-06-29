@@ -15,6 +15,8 @@ class CustomerAdapter(
     RecyclerView.Adapter<CustomerAdapter.CustomerViewHolder>() {
 
     private var onItemClick: OnItemClickCustomer? = null
+    var selectedPosition = -1
+    var lastSelectedPosition = -1
 
     fun setListenerItem(listener: OnItemClickCustomer) {
         this.onItemClick = listener
@@ -25,11 +27,17 @@ class CustomerAdapter(
         fun bindView(customer: CustomerData) {
             binding.pbvCustomerName.apply {
                 buttontext = customer.name
-                primaryButtonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
+                buttonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
                     override fun onClickPrimaryButtonView(view: View?) {
                         onItemClick?.onClickItemCustomer(customer)
+                        lastSelectedPosition = selectedPosition
+                        selectedPosition = adapterPosition
+                        notifyItemChanged(lastSelectedPosition)
+                        notifyItemChanged(selectedPosition)
+
                     }
                 }
+                setButtonColor = selectedPosition == adapterPosition
             }
         }
     }
