@@ -26,11 +26,9 @@ class BottomTabBar @JvmOverloads constructor(
         const val TAB_HOME = 0
         const val TAB_EVN = 1
         const val TAB_ABOUT = 2
-        const val TAB_SETTING = 3
     }
 
     private lateinit var binding: LayoutBottomTabBarBinding
-    var onClickItems: OnClickBottomTabBar? = null
     var imageViewList: Array<ImageView>? = null
     private var textViewList: Array<TextView>? = null
     var position = 0
@@ -38,17 +36,13 @@ class BottomTabBar @JvmOverloads constructor(
     private fun initView(attributeSet: AttributeSet?) {
         binding = LayoutBottomTabBarBinding.inflate(LayoutInflater.from(context), this, true)
         imageViewList = arrayOf<ImageView>(
-            binding.imgHome, binding.imgEvn, binding.imgAbout, binding.imgSetting
+            binding.imgHome, binding.imgEvn, binding.imgAbout
         )
         textViewList = arrayOf<TextView>(
-            binding.tvHome, binding.tvEvn, binding.tvAbout, binding.tvSetting
+            binding.tvHome, binding.tvEvn, binding.tvAbout
         )
         setTabSelected(binding.imgHome)
 
-    }
-
-    interface OnClickBottomTabBar {
-        fun onClickItemView(tabNo: Int)
     }
 
     fun onTabClick(viewPager: ViewPager2) {
@@ -74,13 +68,6 @@ class BottomTabBar @JvmOverloads constructor(
                             setTabSelected(imgAbout)
                             position = TAB_ABOUT
                             viewPager.currentItem = TAB_ABOUT
-                        }
-                    }
-                    imgSetting -> {
-                        llSettings.setOnClickListener{
-                            setTabSelected(imgSetting)
-                            position = TAB_SETTING
-                            viewPager.currentItem = TAB_SETTING
                         }
                     }
                     else -> {

@@ -37,5 +37,6 @@
     <string name="total_amount">Tổng cộng tiền thanh toán(đồng): %s</string>
     <string name="calculate">Tính toán</string>
     <string name="welcome_content">Tính toán tiền điện từ số điện năng mà bạn sử dụng</string>
+    <string name="version">Version: %s</string>
 
 </resources>

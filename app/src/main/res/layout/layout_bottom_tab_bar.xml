@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@id/llSettings"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/llEvn"
         app:layout_constraintTop_toTopOf="@id/llEvn"
         app:layout_constraintWidth_percent="0.2">
@@ -98,34 +98,5 @@
             android:textColor="@color/black"
             android:textSize="12sp" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llSettings"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/llAbout"
-        app:layout_constraintTop_toTopOf="@id/llAbout"
-        app:layout_constraintWidth_percent="0.2">
-
-        <ImageView
-            android:id="@+id/imgSetting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bg_setting_selector" />
-
-        <TextView
-            android:id="@+id/tvSetting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/josefin_sans_bold"
-            android:gravity="center"
-            android:text="@string/setting_page"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-    </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

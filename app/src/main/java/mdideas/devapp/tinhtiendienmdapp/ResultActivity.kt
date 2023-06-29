@@ -30,7 +30,6 @@ class ResultActivity : AppCompatActivity() {
             add(HomeFragment())
             add(EvnDataFragment())
             add(AboutFragment())
-            add(SettingFragment())
         }
         innitViewPager(lisFragment)
     }

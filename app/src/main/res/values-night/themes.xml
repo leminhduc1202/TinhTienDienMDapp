@@ -2,5 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.TinhTienDienMDapp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
+        <item name="android:navigationBarColor">@color/pastel_green</item>
+        <item name="android:statusBarColor">@color/java</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
     </style>
 </resources>
