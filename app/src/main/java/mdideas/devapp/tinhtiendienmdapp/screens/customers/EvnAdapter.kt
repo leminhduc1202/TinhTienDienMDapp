@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import mdideas.devapp.tinhtiendienmdapp.databinding.ItemEvenDataBinding
 import mdideas.devapp.tinhtiendienmdapp.model.EvnData
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class EvnAdapter() : RecyclerView.Adapter<EvnAdapter.EvnAdapterViewHolder>() {
 
@@ -21,12 +24,13 @@ class EvnAdapter() : RecyclerView.Adapter<EvnAdapter.EvnAdapterViewHolder>() {
     inner class EvnAdapterViewHolder(private val binding: ItemEvenDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindView(evnData: EvnData) {
+            val nf: NumberFormat = NumberFormat.getInstance(Locale.US)
             binding.apply {
                 evnData.apply {
                     tvTypedPrice.text = this.typedPrice
-                    tvElectricPrice.text = this.electricPrice.toString()
+                    tvElectricPrice.text = nf.format(this.electricPrice)
                     tvElectricOutput.text = this.electricOutput.toString()
-                    tvElectricAmount.text = this.electricAmount.toString()
+                    tvElectricAmount.text = nf.format(this.electricAmount)
                 }
             }
         }
