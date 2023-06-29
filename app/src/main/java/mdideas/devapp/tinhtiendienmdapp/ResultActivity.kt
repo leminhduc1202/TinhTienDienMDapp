@@ -50,7 +50,7 @@ class ResultActivity : AppCompatActivity() {
             tongDienNang.doAfterTextChanged {
                 tinhToan.apply {
                     handleEnable(it.toString().isNotEmpty())
-                    primaryButtonViewClickListener =
+                    buttonViewClickListener =
                         object : PrimaryButtonView.OnPrimaryButtonView {
                             override fun onClickPrimaryButtonView(view: View?) {
                                 calculateElectric(it.toString().toInt())

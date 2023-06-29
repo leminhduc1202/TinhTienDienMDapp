@@ -507,6 +507,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/lineTop"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/rcvCustomer" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputElectricOutput"
         android:layout_width="0dp"
@@ -529,7 +536,7 @@
 
     <mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
         android:id="@+id/pbvCalculate"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:layout_constraintBottom_toBottomOf="@id/inputElectricOutput"
@@ -584,9 +591,22 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toTopOf="@id/tvTotalAmount"
         app:layout_constraintTop_toBottomOf="@id/inputElectricOutput" />
+
+    <TextView
+        android:id="@+id/tvTotalAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/total_amount"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/tvSelectCustomer"
@@ -599,7 +619,7 @@
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rcvCustomer"/>
+        app:layout_constraintTop_toBottomOf="@id/lineTop" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

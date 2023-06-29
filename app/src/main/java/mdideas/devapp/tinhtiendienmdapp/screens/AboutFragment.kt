@@ -28,6 +28,8 @@ class AboutFragment : Fragment() {
             loadUrl("https://sites.google.com/view/mdideas/home-page?authuser=0")
             settings.javaScriptEnabled = true
             webViewClient = WebViewClient()
+            clearCache(true)
+            clearHistory()
             canGoBack()
             setOnKeyListener(View.OnKeyListener { v, key, event ->
                 if (key == KeyEvent.KEYCODE_BACK && event.action == MotionEvent.ACTION_UP

@@ -20,7 +20,7 @@ class PrimaryButtonView @JvmOverloads constructor(
     }
 
     private lateinit var binding: LayoutPrimaryButtonViewBinding
-    var primaryButtonViewClickListener: OnPrimaryButtonView? = null
+    var buttonViewClickListener: OnPrimaryButtonView? = null
     var buttontext: String? = null
         set(value) {
             binding.nameBtn.text = value
@@ -99,7 +99,7 @@ class PrimaryButtonView @JvmOverloads constructor(
         binding.ctPrimaryButtonView.safeClick({
             if (!isLoading()) {
                 hideSoftKeyBoard()
-                primaryButtonViewClickListener?.onClickPrimaryButtonView(it)
+                buttonViewClickListener?.onClickPrimaryButtonView(it)
             }
         })
     }

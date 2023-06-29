@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import mdideas.devapp.tinhtiendienmdapp.R
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity
+import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.TYPED_CITIZEN
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentHomePageBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
 import mdideas.devapp.tinhtiendienmdapp.extention.gone
@@ -58,7 +60,7 @@ class HomePageFragment : Fragment() {
             tongDienNang.doAfterTextChanged {
                 tinhToan.apply {
                     handleEnable(it.toString().isNotEmpty())
-                    primaryButtonViewClickListener =
+                    buttonViewClickListener =
                         object : PrimaryButtonView.OnPrimaryButtonView {
                             override fun onClickPrimaryButtonView(view: View?) {
                                 calculateElectric(it.toString().toInt())
@@ -99,6 +101,22 @@ class HomePageFragment : Fragment() {
         })
         setEvnDataAdapter()
         setCustomersAdapter()
+
+        binding.inputText.addTextChangedListener {
+            binding.pbvCalculate.apply {
+                handleEnable(it.toString().isNotEmpty())
+                buttonViewClickListener =
+                    object : PrimaryButtonView.OnPrimaryButtonView {
+                        override fun onClickPrimaryButtonView(view: View?) {
+                            calculateElectricOutput(
+                                TYPED_CITIZEN,
+                                it.toString().toInt(),
+                                listEvnCitizen
+                            )
+                        }
+                    }
+            }
+        }
     }
 
     private fun setCustomersAdapter() {
@@ -147,6 +165,102 @@ class HomePageFragment : Fragment() {
                 adapter = evnAdapter
             }
         }
+    }
+
+    private fun calculateElectricOutput(
+        typeCustomer: String,
+        outPut: Int,
+        listEvn: ArrayList<EvnData>
+    ) {
+        val nf: NumberFormat = NumberFormat.getInstance(Locale.US)
+        val listEvnOutput = ArrayList<EvnData>()
+        when (typeCustomer) {
+            ResultActivity.TYPED_CITIZEN -> {
+                val listPrice = ArrayList<Int>()
+                val listThreshold = ArrayList<Int>()
+                val listCitizen = ArrayList<EvnData>()
+                listEvn.forEach {
+                    it.electricPrice?.let { it1 -> listPrice.add(it1) }
+                    it.electricOutput?.let { it1 -> listThreshold.add(it1) }
+                }
+                val billResult = calculateElectricityBillDetail(outPut, listPrice, listThreshold)
+                for (i in 0 until billResult.first.size) {
+                    val citizenBill = billResult.first[i]
+                    val evnData = listEvn[i]
+                    listCitizen.add(
+                        EvnData(
+                            TYPED_CITIZEN,
+                            evnData.typedPrice,
+                            evnData.electricPrice,
+                            citizenBill.consumedUnits,
+                            citizenBill.billAmount,
+                            ""
+                        )
+                    )
+                }
+                evnAdapter.setListEvent(listCitizen)
+                binding.tvTotalAmount.apply {
+                    visible()
+                    text = getString(R.string.total_amount, nf.format(billResult.second))
+                }
+                println("Bậc thang $listCitizen")
+                println("Bậc thang ${billResult.second}")
+            }
+            ResultActivity.TYPED_COMPANY -> {
+
+            }
+            ResultActivity.TYPED_INDUSTRY -> {
+
+            }
+            ResultActivity.TYPED_ADMIN -> {
+
+            }
+            else -> {
+
+            }
+        }
+        listEvnOutput.addAll(listEvn)
+    }
+
+    data class BillItem(val consumedUnits: Int, val billAmount: Int)
+
+    private fun calculateElectricityBillDetail(
+        units: Int,
+        priceList: ArrayList<Int>,
+        thresholdList: ArrayList<Int>
+    ): Pair<ArrayList<BillItem>, Int> {
+        val billList = ArrayList<BillItem>()
+        val totalBill: Pair<ArrayList<BillItem>, Int>
+        var totalElectricBill = 0
+        var remainingUnits = units
+
+        for (i in 0 until priceList.size) {
+            val currentPrice = priceList[i]
+            val threshold = thresholdList[i] // Ngưỡng của bậc thang
+
+            if (i < 5) {
+                if (remainingUnits > threshold) {
+                    val consumedUnits = threshold
+                    val currentBill = consumedUnits * currentPrice
+                    billList.add(BillItem(consumedUnits, currentBill))
+                    totalElectricBill += consumedUnits * currentPrice
+                    remainingUnits -= consumedUnits
+                } else {
+                    val currentBill = remainingUnits * currentPrice
+                    billList.add(BillItem(remainingUnits, currentBill))
+                    totalElectricBill += remainingUnits * currentPrice
+                    break
+                }
+            } else {
+                val consumedUnits = remainingUnits
+                val currentBill = consumedUnits * currentPrice
+                billList.add(BillItem(consumedUnits, currentBill))
+                totalElectricBill += remainingUnits * currentPrice
+                break
+            }
+        }
+        totalBill = Pair(billList, totalElectricBill)
+        return totalBill
     }
 
     private fun calculateElectric(electricNumber: Int) {
