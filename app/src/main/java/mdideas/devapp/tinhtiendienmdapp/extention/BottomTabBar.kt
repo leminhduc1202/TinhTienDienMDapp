@@ -56,32 +56,32 @@ class BottomTabBar @JvmOverloads constructor(
             binding.apply {
                 when (it) {
                     imgHome -> {
-                        imgHome.safeClick({
+                        llHome.setOnClickListener {
                             setTabSelected(imgHome)
                             position = TAB_HOME
                             viewPager.currentItem = TAB_HOME
-                        })
+                        }
                     }
                     imgEvn -> {
-                        imgEvn.safeClick({
+                        llEvn.setOnClickListener{
                             setTabSelected(imgEvn)
                             position = TAB_EVN
                             viewPager.currentItem = TAB_EVN
-                        })
+                        }
                     }
                     imgAbout -> {
-                        imgAbout.safeClick({
+                        llAbout.setOnClickListener{
                             setTabSelected(imgAbout)
                             position = TAB_ABOUT
                             viewPager.currentItem = TAB_ABOUT
-                        })
+                        }
                     }
                     imgSetting -> {
-                        imgSetting.safeClick({
+                        llSettings.setOnClickListener{
                             setTabSelected(imgSetting)
                             position = TAB_SETTING
                             viewPager.currentItem = TAB_SETTING
-                        })
+                        }
                     }
                     else -> {
                         Log.d("Bottom TabBar", "Do not know tab")

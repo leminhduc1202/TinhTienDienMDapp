@@ -9,95 +9,123 @@
 
     <View
         android:id="@+id/lineTop"
-        android:background="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="2dp"/>
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgHome"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llHome"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/bg_home_selector"
         android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toStartOf="@id/imgEvn"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/llEvn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lineTop" />
+        app:layout_constraintTop_toBottomOf="@id/lineTop"
+        app:layout_constraintWidth_percent="0.2">
 
-    <TextView
-        android:id="@+id/tvHome"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imgHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_home_selector" />
+
+        <TextView
+            android:id="@+id/tvHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:gravity="center"
+            android:text="@string/home_page"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llEvn"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/home_page"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/imgHome"
-        app:layout_constraintStart_toStartOf="@id/imgHome"
-        app:layout_constraintTop_toBottomOf="@id/imgHome" />
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/llAbout"
+        app:layout_constraintStart_toEndOf="@id/llHome"
+        app:layout_constraintTop_toTopOf="@id/llHome"
+        app:layout_constraintWidth_percent="0.2">
 
-    <ImageView
-        android:id="@+id/imgEvn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/bg_evn_selector"
-        app:layout_constraintEnd_toStartOf="@id/imgAbout"
-        app:layout_constraintStart_toEndOf="@id/tvHome"
-        app:layout_constraintTop_toTopOf="@id/imgHome" />
+        <ImageView
+            android:id="@+id/imgEvn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_evn_selector" />
 
-    <TextView
-        android:id="@+id/tvEvn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/evn_page"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/imgEvn"
-        app:layout_constraintStart_toStartOf="@id/imgEvn"
-        app:layout_constraintTop_toBottomOf="@id/imgEvn" />
+        <TextView
+            android:id="@+id/tvEvn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:gravity="center"
+            android:text="@string/evn_page"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imgAbout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/bg_about_selector"
-        app:layout_constraintEnd_toStartOf="@id/imgSetting"
-        app:layout_constraintStart_toEndOf="@id/imgEvn"
-        app:layout_constraintTop_toTopOf="@id/imgHome" />
-
-    <TextView
-        android:id="@+id/tvAbout"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llAbout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/about_page"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/imgAbout"
-        app:layout_constraintStart_toStartOf="@id/imgAbout"
-        app:layout_constraintTop_toBottomOf="@id/imgAbout" />
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/llSettings"
+        app:layout_constraintStart_toEndOf="@id/llEvn"
+        app:layout_constraintTop_toTopOf="@id/llEvn"
+        app:layout_constraintWidth_percent="0.2">
 
-    <ImageView
-        android:id="@+id/imgSetting"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imgAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_about_selector" />
+
+        <TextView
+            android:id="@+id/tvAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:gravity="center"
+            android:text="@string/about_page"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSettings"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/bg_setting_selector"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imgAbout"
-        app:layout_constraintTop_toTopOf="@id/imgHome" />
+        app:layout_constraintStart_toEndOf="@id/llAbout"
+        app:layout_constraintTop_toTopOf="@id/llAbout"
+        app:layout_constraintWidth_percent="0.2">
 
-    <TextView
-        android:id="@+id/tvSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/setting_page"
-        android:textColor="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/imgSetting"
-        app:layout_constraintStart_toStartOf="@id/imgSetting"
-        app:layout_constraintTop_toBottomOf="@id/imgSetting" />
+        <ImageView
+            android:id="@+id/imgSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_setting_selector" />
+
+        <TextView
+            android:id="@+id/tvSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/josefin_sans_bold"
+            android:gravity="center"
+            android:text="@string/setting_page"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
