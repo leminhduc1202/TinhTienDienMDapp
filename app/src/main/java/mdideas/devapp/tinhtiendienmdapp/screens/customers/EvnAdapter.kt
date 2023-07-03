@@ -2,6 +2,7 @@ package mdideas.devapp.tinhtiendienmdapp.screens.customers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import mdideas.devapp.tinhtiendienmdapp.databinding.ItemEvenDataBinding
 import mdideas.devapp.tinhtiendienmdapp.model.EvnData
@@ -14,11 +15,13 @@ class EvnAdapter() : RecyclerView.Adapter<EvnAdapter.EvnAdapterViewHolder>() {
     private val listEvnData = ArrayList<EvnData>()
 
     fun setListEvent(listEvn: ArrayList<EvnData>) {
+        val diffUtilCallback = EvnDiffUtilCallback(listEvnData, listEvn)
+        val diffResult = DiffUtil.calculateDiff(diffUtilCallback)
         this.listEvnData.apply {
             clear()
             addAll(listEvn)
         }
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class EvnAdapterViewHolder(private val binding: ItemEvenDataBinding) :
