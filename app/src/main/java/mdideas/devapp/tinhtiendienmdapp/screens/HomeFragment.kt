@@ -1,6 +1,7 @@
 package mdideas.devapp.tinhtiendienmdapp.screens
 
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import kotlinx.coroutines.flow.Flow
 import mdideas.devapp.tinhtiendienmdapp.R
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.TYPED_CITIZEN
@@ -22,6 +24,7 @@ import mdideas.devapp.tinhtiendienmdapp.model.EvnResponse
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.EvnAdapter
 import java.text.NumberFormat
 import java.util.*
+
 
 class HomeFragment : Fragment() {
 
@@ -114,8 +117,10 @@ class HomeFragment : Fragment() {
             lnTotalAmount.visible()
             tvTotalAmountNoVat.text = getString(R.string.total_amount_without_vat, nf.format(billResult.second))
             tvTotalAmountVat.text = getString(R.string.total_amount_vat, nf.format(billResult.second / 10))
-            tvTotalAmount.text = getString(R.string.total_amount, nf.format(billResult.second + (billResult.second / 10)))
+            tvTotalAmount.text = Html.fromHtml(getString(R.string.html_text,nf.format(billResult.second + (billResult.second / 10))),0)
         }
+        val flow : Flow<EvnData>
+
     }
 
     data class BillItem(val consumedUnits: Int, val billAmount: Int)

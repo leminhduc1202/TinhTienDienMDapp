@@ -1,10 +1,13 @@
 package mdideas.devapp.tinhtiendienmdapp
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
 import mdideas.devapp.tinhtiendienmdapp.databinding.ActivityResultBinding
+import mdideas.devapp.tinhtiendienmdapp.extention.BroadCastReceiverHolder
 import mdideas.devapp.tinhtiendienmdapp.extention.ViewPagerAdapter
 import mdideas.devapp.tinhtiendienmdapp.screens.*
 
@@ -19,6 +22,7 @@ class ResultActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityResultBinding
     private val lisFragment = ArrayList<Fragment>()
+    private val airPlaneMode = BroadCastReceiverHolder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +30,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
         FirebaseApp.initializeApp(this)
 
+        registerReceiver(airPlaneMode, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
         lisFragment.apply {
             add(HomeFragment())
             add(EvnDataFragment())
@@ -42,6 +47,11 @@ class ResultActivity : AppCompatActivity() {
                 adapter = ViewPagerAdapter(this@ResultActivity, lisFragment)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(airPlaneMode)
     }
 }
 

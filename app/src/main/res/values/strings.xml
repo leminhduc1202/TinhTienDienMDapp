@@ -38,5 +38,10 @@
     <string name="calculate">Tính toán</string>
     <string name="welcome_content">Tính toán tiền điện từ số điện năng mà bạn sử dụng</string>
     <string name="version">Version: %s</string>
+    <string name="html_text" formatted="false">
+        <![CDATA[
+        Tổng cộng tiền thanh toán(đồng): <font color= \'#FF0000\' font>%s</font>
+        ]]>
+    </string>
 
 </resources>
