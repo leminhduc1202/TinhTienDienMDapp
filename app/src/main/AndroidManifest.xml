@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mdideas.devapp.tinhtiendienmdapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,8 +13,11 @@
         android:theme="@style/Theme.TinhTienDienMDapp">
         <activity
             android:name=".ResultActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true" />
-        <activity android:name=".HomeActivity"
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

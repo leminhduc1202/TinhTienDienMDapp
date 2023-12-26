@@ -6,10 +6,10 @@
     <string name="hotroCovid">Hỗ trợ COVID \n (mặc định 10%)</string>
     <string name="tinhtoan">tính tiền điện</string>
     <string name="sttbac">STT Bậc</string>
-    <string name="khoantieuthu">Khoản \n tiêu thụ</string>
-    <string name="dientieuthu">Điện \n tiêu thụ (kWh)</string>
-    <string name="dongia">Đơn giá\n (đồng)</string>
-    <string name="thanhtien">Thành tiền</string>
+    <string name="khoantieuthu">Khoản tiêu thụ</string>
+    <string name="dientieuthu">Điện tiêu thụ (kWh)</string>
+    <string name="dongia">Đơn giá (đồng/kWh)</string>
+    <string name="thanhtien">Thành tiền (đồng)</string>
     <string name="bac1">Bậc 1</string>
     <string name="khoan1">Cho kWh từ \n 0 - 100</string>
     <string name="bac2">Bậc 2</string>
@@ -27,4 +27,21 @@
     <string name="thueGTGT">Thuế GTGT (10%) tiền điện:</string>
     <string name="tongCongthanhtoan">Tổng cộng tiền điện (đồng):</string>
     <string name="so_dien_nang">Số điện năng</string>
+    <string name="home_page">Home</string>
+    <string name="evn_page">EVN</string>
+    <string name="about_page">About</string>
+    <string name="setting_page">Setting</string>
+    <string name="title_selected_customer">Chọn đối tượng khách hàng</string>
+    <string name="total_amount_without_vat">Tiền điện chưa thuế (đồng): %s</string>
+    <string name="total_amount_vat">Thuế GTGT (10%%)(đồng): %s</string>
+    <string name="total_amount">Tổng cộng tiền thanh toán(đồng): %s</string>
+    <string name="calculate">Tính toán</string>
+    <string name="welcome_content">Tính toán tiền điện từ số điện năng mà bạn sử dụng</string>
+    <string name="version">Version: %s</string>
+    <string name="html_text" formatted="false">
+        <![CDATA[
+        Tổng cộng tiền thanh toán(đồng): <font color= \'#FF0000\' font>%s</font>
+        ]]>
+    </string>
+
 </resources>

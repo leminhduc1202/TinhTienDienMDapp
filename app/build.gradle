@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -9,11 +11,11 @@ android {
 
     defaultConfig {
         applicationId "mdideas.devapp.tinhtiendienmdapp"
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 33
-        versionCode 1
-        versionName "1.0"
-
+        versionCode 5
+        versionName "2.1"
+        archivesBaseName = "Electric Calculator v$versionName($versionCode)"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -46,6 +48,9 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.9'
+    implementation 'com.google.firebase:firebase-analytics-ktx:20.1.2'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
