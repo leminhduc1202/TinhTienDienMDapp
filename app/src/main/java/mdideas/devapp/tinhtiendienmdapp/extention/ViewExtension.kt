@@ -2,6 +2,7 @@ package mdideas.devapp.tinhtiendienmdapp.extention
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Context
 import android.os.SystemClock
 import android.util.Property
@@ -78,5 +79,10 @@ fun View.gone() {
 
 fun View.isVisible(): Boolean {
     return this.visibility == View.VISIBLE
+}
+
+fun hideSoftKeyboard(context: Activity) {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(context.currentFocus?.windowToken, 0)
 }
 

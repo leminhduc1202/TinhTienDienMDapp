@@ -3,7 +3,6 @@ package mdideas.devapp.tinhtiendienmdapp.model
 import android.os.Parcel
 import android.os.Parcelable
 
-
 data class EvnData(
     val typedCustomer: String? = "",
     val typedPrice: String? = "",

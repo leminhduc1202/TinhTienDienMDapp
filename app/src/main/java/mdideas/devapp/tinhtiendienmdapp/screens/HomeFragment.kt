@@ -6,18 +6,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import kotlinx.coroutines.flow.Flow
 import mdideas.devapp.tinhtiendienmdapp.R
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.TYPED_CITIZEN
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentHomeBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
 import mdideas.devapp.tinhtiendienmdapp.extention.gone
+import mdideas.devapp.tinhtiendienmdapp.extention.hideSoftKeyboard
 import mdideas.devapp.tinhtiendienmdapp.extention.visible
 import mdideas.devapp.tinhtiendienmdapp.model.EvnData
 import mdideas.devapp.tinhtiendienmdapp.model.EvnResponse
@@ -75,14 +76,25 @@ class HomeFragment : Fragment() {
     }
 
     private fun handleClickCalculate(listEvn: ArrayList<EvnData>) {
-        binding.inputText.addTextChangedListener {
-            binding.pbvCalculate.apply {
-                handleEnable(it.toString().isNotEmpty())
-                buttonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
-                    override fun onClickPrimaryButtonView(view: View?) {
-                        calculateElectricOutput(it.toString().toInt(), listEvn)
-                        it?.clear()
+        binding.apply {
+            inputText.addTextChangedListener { text ->
+                binding.pbvCalculate.apply {
+                    handleEnable(text.toString().isNotEmpty())
+                    buttonViewClickListener = object : PrimaryButtonView.OnPrimaryButtonView {
+                        override fun onClickPrimaryButtonView(view: View?) {
+                            calculateElectricOutput(text.toString().toInt(), listEvn)
+                            text?.clear()
+                        }
                     }
+                }
+                inputText.setOnEditorActionListener { _, actionId, _ ->
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        calculateElectricOutput(text.toString().toInt(), listEvn)
+                        text?.clear()
+                        hideSoftKeyboard(requireActivity())
+                        return@setOnEditorActionListener true
+                    }
+                    false
                 }
             }
         }
@@ -119,7 +131,6 @@ class HomeFragment : Fragment() {
             tvTotalAmountVat.text = getString(R.string.total_amount_vat, nf.format(billResult.second / 10))
             tvTotalAmount.text = Html.fromHtml(getString(R.string.html_text,nf.format(billResult.second + (billResult.second / 10))),0)
         }
-        val flow : Flow<EvnData>
 
     }
 
@@ -139,11 +150,11 @@ class HomeFragment : Fragment() {
 
             if (i < 5) {
                 if (remainingUnits > threshold) {
-                    val consumedUnits = threshold
-                    val currentBill = consumedUnits * currentPrice
-                    billList.add(BillItem(consumedUnits, currentBill))
-                    totalElectricBill += consumedUnits * currentPrice
-                    remainingUnits -= consumedUnits
+                    val consumedUnitsBelowFive = threshold
+                    val currentBill = consumedUnitsBelowFive * currentPrice
+                    billList.add(BillItem(consumedUnitsBelowFive, currentBill))
+                    totalElectricBill += consumedUnitsBelowFive * currentPrice
+                    remainingUnits -= consumedUnitsBelowFive
                 } else {
                     val currentBill = remainingUnits * currentPrice
                     billList.add(BillItem(remainingUnits, currentBill))

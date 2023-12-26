@@ -2,9 +2,6 @@ package mdideas.devapp.tinhtiendienmdapp.screens
 
 import android.os.Bundle
 import android.view.*
-import android.webkit.CookieManager
-import android.webkit.CookieSyncManager
-import android.webkit.ValueCallback
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentEvnPageBinding

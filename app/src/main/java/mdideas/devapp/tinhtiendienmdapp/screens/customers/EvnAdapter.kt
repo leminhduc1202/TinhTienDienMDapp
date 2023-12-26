@@ -8,7 +8,6 @@ import mdideas.devapp.tinhtiendienmdapp.databinding.ItemEvenDataBinding
 import mdideas.devapp.tinhtiendienmdapp.model.EvnData
 import java.text.NumberFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class EvnAdapter() : RecyclerView.Adapter<EvnAdapter.EvnAdapterViewHolder>() {
 

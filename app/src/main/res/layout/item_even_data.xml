@@ -15,6 +15,7 @@
         android:fontFamily="@font/josefin_sans_medium"
         android:gravity="center"
         android:text="@string/sttbac"
+        android:textColor="@color/black"
         android:textSize="12sp" />
 
     <TextView
@@ -25,6 +26,7 @@
         android:fontFamily="@font/josefin_sans_medium"
         android:gravity="center"
         android:text="@string/dongia"
+        android:textColor="@color/black"
         android:textSize="12sp" />
 
     <TextView
@@ -35,6 +37,7 @@
         android:fontFamily="@font/josefin_sans_medium"
         android:gravity="center"
         android:text="@string/dientieuthu"
+        android:textColor="@color/black"
         android:textSize="12sp" />
 
     <TextView
@@ -46,6 +49,7 @@
         android:fontFamily="@font/josefin_sans_medium"
         android:text="@string/thanhtien"
         android:textAlignment="textEnd"
+        android:textColor="@color/black"
         android:textSize="12sp" />
 
 </LinearLayout>
