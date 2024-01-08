@@ -3,9 +3,11 @@ package mdideas.devapp.tinhtiendienmdapp
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import mdideas.devapp.tinhtiendienmdapp.databinding.ActivityResultBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.BroadCastReceiverHolder
 import mdideas.devapp.tinhtiendienmdapp.extention.ViewPagerAdapter
@@ -23,12 +25,19 @@ class ResultActivity : AppCompatActivity() {
     lateinit var binding: ActivityResultBinding
     private val lisFragment = ArrayList<Fragment>()
     private val airPlaneMode = BroadCastReceiverHolder()
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
         FirebaseApp.initializeApp(this)
+        if (firebaseAuth.currentUser == null){
+            firebaseAuth.signInWithEmailAndPassword(
+                BuildConfig.FIREBASE_EMAIL,
+                BuildConfig.FIREBASE_PASSWORD
+            )
+        }
 
         registerReceiver(airPlaneMode, IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED))
         lisFragment.apply {
