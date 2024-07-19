@@ -45,6 +45,14 @@ android {
         variant.buildConfigField "String", "FIREBASE_PASSWORD", "\"${FIREBASE_PASSWORD}\""
     }
 
+    signingConfigs {
+        release {
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASSWORD
+            storeFile file(STORE_FILE)
+            storePassword STORE_PASSWORD
+        }
+    }
 }
 
 dependencies {
