@@ -20,9 +20,10 @@ class ResultActivity : AppCompatActivity() {
             "https://tinhtiendienmdapp-default-rtdb.asia-southeast1.firebasedatabase.app"
         const val URL_EVN_DATA = "evn_data"
         const val TYPED_CITIZEN = "EVN CITIZEN"
+        const val URL_EVN_TAX = "evn_tax"
     }
 
-    lateinit var binding: ActivityResultBinding
+    private lateinit var binding: ActivityResultBinding
     private val lisFragment = ArrayList<Fragment>()
     private val airPlaneMode = BroadCastReceiverHolder()
     private val firebaseAuth = FirebaseAuth.getInstance()

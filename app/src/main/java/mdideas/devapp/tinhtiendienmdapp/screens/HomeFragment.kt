@@ -15,6 +15,7 @@ import com.google.firebase.database.*
 import mdideas.devapp.tinhtiendienmdapp.R
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity
 import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.TYPED_CITIZEN
+import mdideas.devapp.tinhtiendienmdapp.ResultActivity.Companion.URL_EVN_TAX
 import mdideas.devapp.tinhtiendienmdapp.databinding.FragmentHomeBinding
 import mdideas.devapp.tinhtiendienmdapp.extention.PrimaryButtonView
 import mdideas.devapp.tinhtiendienmdapp.extention.gone
@@ -22,6 +23,7 @@ import mdideas.devapp.tinhtiendienmdapp.extention.hideSoftKeyboard
 import mdideas.devapp.tinhtiendienmdapp.extention.visible
 import mdideas.devapp.tinhtiendienmdapp.model.EvnData
 import mdideas.devapp.tinhtiendienmdapp.model.EvnResponse
+import mdideas.devapp.tinhtiendienmdapp.model.EvnTaxResponse
 import mdideas.devapp.tinhtiendienmdapp.screens.customers.EvnAdapter
 import java.text.NumberFormat
 import java.util.*
@@ -32,8 +34,10 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val database = FirebaseDatabase.getInstance(ResultActivity.URL_REALTIME_DATABASE)
     private var reference: DatabaseReference? = null
+    private var referenceTax: DatabaseReference? = null
     val listEvnData = ArrayList<EvnData>()
     private var evnAdapter = EvnAdapter()
+    private var evnTax : EvnTaxResponse ?= null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -54,6 +58,16 @@ class HomeFragment : Fragment() {
                     }
                 }
                 evnAdapter.setListEvent(listEvnData)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("error", error.message)
+            }
+        })
+        referenceTax = database.getReference(URL_EVN_TAX)
+        referenceTax?.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                evnTax = snapshot.getValue(EvnTaxResponse::class.java)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -128,8 +142,14 @@ class HomeFragment : Fragment() {
         binding.apply {
             lnTotalAmount.visible()
             tvTotalAmountNoVat.text = getString(R.string.total_amount_without_vat, nf.format(billResult.second))
-            tvTotalAmountVat.text = getString(R.string.total_amount_vat, nf.format(billResult.second / 10))
-            tvTotalAmount.text = Html.fromHtml(getString(R.string.html_text,nf.format(billResult.second + (billResult.second / 10))),0)
+            if (evnTax?.evnTaxUpdate != null){
+                tvTotalAmountVat.text = getString(
+                    R.string.total_amount_vat,
+                    evnTax?.evnTaxUpdate.toString(),
+                    nf.format((billResult.second / 100) * evnTax!!.evnTaxUpdate!!)
+                )
+                tvTotalAmount.text = Html.fromHtml(getString(R.string.html_text,nf.format(billResult.second + (billResult.second / 100) * evnTax!!.evnTaxUpdate!!)),0)
+            }
         }
 
     }

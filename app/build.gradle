@@ -7,15 +7,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "mdideas.devapp.tinhtiendienmdapp"
         minSdkVersion 24
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 6
         versionName "2.2"
-        archivesBaseName = "Electric Calculator v$versionName($versionCode)"
+        archivesBaseName = "ElectricCalculatorV$versionName($versionCode)"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -35,6 +35,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'mdideas.devapp.tinhtiendienmdapp'
 
     applicationVariants.all { variant ->
         def FIREBASE_EMAIL, FIREBASE_PASSWORD

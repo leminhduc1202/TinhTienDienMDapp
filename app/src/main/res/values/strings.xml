@@ -33,7 +33,7 @@
     <string name="setting_page">Setting</string>
     <string name="title_selected_customer">Chọn đối tượng khách hàng</string>
     <string name="total_amount_without_vat">Tiền điện chưa thuế (đồng): %s</string>
-    <string name="total_amount_vat">Thuế GTGT (10%%)(đồng): %s</string>
+    <string name="total_amount_vat">Thuế GTGT (%s%%)(đồng): %s</string>
     <string name="total_amount">Tổng cộng tiền thanh toán(đồng): %s</string>
     <string name="calculate">Tính toán</string>
     <string name="welcome_content">Tính toán tiền điện từ số điện năng mà bạn sử dụng</string>
